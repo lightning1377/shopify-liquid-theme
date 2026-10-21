@@ -1,0 +1,57 @@
+{%- comment -%}
+  Renders a product card.
+  Accepts:
+  - product: {Object} Shopify Product Object
+{%- endcomment -%}
+
+<article class='product-card' data-product-id='{{ product.id }}'>
+  <div class='product-card-media-wrap'>
+    <!-- Badges -->
+    <div class='product-badge-group'>
+      {%- if product.compare_at_price > product.price -%}
+        <span class='badge-tag badge-tag--promo'>
+          {{ 'products.product.discount_in_cart' | t }}
+        </span>
+      {%- endif -%}
+      {%- unless product.available -%}
+        <span class='badge-tag badge-tag--sale'>{{ 'products.product.sold_out' | t }}</span>
+      {%- endunless -%}
+    </div>
+
+    <!-- Wishlist Button -->
+    <button
+      type='button'
+      class='product-wishlist-btn'
+      aria-label='{{ 'products.product.add_to_favorites' | t }}'
+      data-wishlist-btn
+      data-product-id='{{ product.id }}'
+    >
+      {% render 'icon-heart' %}
+    </button>
+
+    <!-- Product Link & Image -->
+    <a href='{{ product.url }}' class='product-card-image-link' tabindex='-1' aria-hidden='true'>
+      {%- capture card_img_src -%}{% render 'product-image-url', product: product %}{%- endcapture -%}
+      <img
+        src='{{ card_img_src | strip }}'
+        alt='{{ product.featured_image.alt | default: product.title | escape }}'
+        loading='lazy'
+        width='900'
+        height='1200'
+      >
+    </a>
+
+    <!-- Quick View / Inspect Action -->
+    <a href='{{ product.url }}' class='product-card-quick-view'>
+      {{ 'products.product.quick_view' | t }} &rarr;
+    </a>
+  </div>
+
+  <div class='product-card-info'>
+    <h3 class='product-card-title'>
+      <a href='{{ product.url }}'>{{ product.title }}</a>
+    </h3>
+
+    {% render 'price', product: product %}
+  </div>
+</article>

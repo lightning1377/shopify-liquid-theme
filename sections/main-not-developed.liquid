@@ -1,0 +1,237 @@
+{%- liquid
+  assign path = request.path | downcase
+  assign page_feature_title = ''
+
+  if path contains 'siparis-takibi' or path contains 'order-tracking'
+    assign page_feature_title = 'sections.not_developed.titles.order_tracking' | t
+  elsif path contains 'hakkimizda' or path contains 'about'
+    assign page_feature_title = 'sections.not_developed.titles.about_us' | t
+  elsif path contains 'surdurulebilirlik' or path contains 'sustainability'
+    assign page_feature_title = 'sections.not_developed.titles.sustainability' | t
+  elsif path contains 'kavra-club' or path contains 'club'
+    assign page_feature_title = 'sections.not_developed.titles.club' | t
+  elsif path contains 'magazalar' or path contains 'stores'
+    assign page_feature_title = 'sections.not_developed.titles.stores' | t
+  elsif path contains 'kariyer' or path contains 'careers'
+    assign page_feature_title = 'sections.not_developed.titles.careers' | t
+  elsif path contains 'kargo-teslimat' or path contains 'shipping'
+    assign page_feature_title = 'sections.not_developed.titles.shipping' | t
+  elsif path contains 'iade-degisim' or path contains 'returns'
+    assign page_feature_title = 'sections.not_developed.titles.returns' | t
+  elsif path contains 'sss' or path contains 'faq'
+    assign page_feature_title = 'sections.not_developed.titles.faq' | t
+  elsif path contains 'beden-tablosu' or path contains 'size-guide'
+    assign page_feature_title = 'sections.not_developed.titles.size_guide' | t
+  elsif path contains 'iletisim' or path contains 'contact'
+    assign page_feature_title = 'sections.not_developed.titles.contact' | t
+  elsif path contains 'markalar' or path contains 'brands'
+    assign page_feature_title = 'sections.not_developed.titles.brands' | t
+  elsif path contains 'outlet'
+    assign page_feature_title = 'sections.not_developed.titles.outlet' | t
+  elsif page.title != blank
+    assign page_feature_title = page.title
+  endif
+
+  capture erkek_home_url
+    render 'audience-collection-url', gender: 'erkek'
+  endcapture
+  capture kadin_home_url
+    render 'audience-collection-url', gender: 'kadin'
+  endcapture
+  assign erkek_home_url = erkek_home_url | strip
+  assign kadin_home_url = kadin_home_url | strip
+
+  assign primary_back_url = erkek_home_url
+  if path contains 'kadin'
+    assign primary_back_url = kadin_home_url
+  endif
+-%}
+
+<section class='not-developed-section page-width' aria-labelledby='NotDevelopedHeading'>
+  <div class='not-developed-card'>
+    <!-- Badge -->
+    <span class='not-developed-badge'>
+      {{ section.settings.badge | default: 'sections.not_developed.badge' | t }}
+    </span>
+
+    <!-- Visual Icon: Artisan Compass & Ruler / Craft Symbol -->
+    <div class='not-developed-icon-wrap' aria-hidden='true'>
+      <svg
+        width='48'
+        height='48'
+        viewBox='0 0 24 24'
+        fill='none'
+        stroke='currentColor'
+        stroke-width='1.5'
+        stroke-linecap='round'
+        stroke-linejoin='round'
+      >
+        <path d='M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z'></path>
+        <path d='M10 13l2 2'></path>
+      </svg>
+    </div>
+
+    <!-- Page / Section Title -->
+    <p
+      class='not-developed-topic'
+      data-not-developed-topic
+      {% if page_feature_title == blank %}
+        style='display: none;'
+      {% endif %}
+    >
+      {{ page_feature_title }}
+    </p>
+
+    <h1 id='NotDevelopedHeading' class='not-developed-heading'>
+      {%- if section.settings.title != blank -%}
+        {{ section.settings.title }}
+      {%- else -%}
+        {{ 'sections.not_developed.default_title' | t }}
+      {%- endif -%}
+    </h1>
+
+    <!-- Description Paragraph -->
+    <p class='not-developed-description'>
+      {%- if section.settings.description != blank -%}
+        {{ section.settings.description }}
+      {%- else -%}
+        {{ 'sections.not_developed.default_description' | t }}
+      {%- endif -%}
+    </p>
+
+    <!-- Action Group: Continue Shopping Primary & Collections -->
+    <div class='not-developed-actions'>
+      <a href='{{ primary_back_url }}' class='btn-primary not-developed-primary-btn'>
+        {{ 'sections.not_developed.continue_shopping' | t }} &rarr;
+      </a>
+    </div>
+
+    <div class='not-developed-nav-chips' aria-label='{{ 'sections.not_developed.browse_all' | t }}'>
+      <span class='not-developed-chips-label'>{{ 'sections.not_developed.browse_all' | t }}:</span>
+      <a href='{{ erkek_home_url }}' class='not-developed-chip'>
+        {{ 'sections.not_developed.browse_men' | t }}
+      </a>
+      <a href='{{ kadin_home_url }}' class='not-developed-chip'>
+        {{ 'sections.not_developed.browse_women' | t }}
+      </a>
+      <a href='{{ routes.all_products_collection_url }}' class='not-developed-chip'>
+        {{ 'sections.not_developed.browse_all' | t }}
+      </a>
+    </div>
+
+    <!-- Customer Support Strip -->
+    {%- if section.settings.show_support -%}
+      <div class='not-developed-support-box'>
+        <p class='not-developed-support-text'>
+          {{ 'sections.not_developed.support_note' | t }}
+        </p>
+        <div class='not-developed-support-actions'>
+          <a
+            href='https://wa.me/908502884288'
+            target='_blank'
+            rel='noopener'
+            class='not-developed-support-btn not-developed-support-btn--whatsapp'
+          >
+            {% render 'icon-whatsapp' %}
+            <span>{{ 'sections.not_developed.support_whatsapp' | t }}</span>
+          </a>
+          <a
+            href='tel:08502884288'
+            class='not-developed-support-btn'
+          >
+            {% render 'icon-phone' %}
+            <span>{{ 'sections.not_developed.support_phone' | t }}</span>
+          </a>
+        </div>
+      </div>
+    {%- endif -%}
+  </div>
+
+  <script type='application/json' id='NotDevelopedTopicMap-{{ section.id }}'>
+    {
+      "siparis-takibi": {{ 'sections.not_developed.titles.order_tracking' | t | json }},
+      "order-tracking": {{ 'sections.not_developed.titles.order_tracking' | t | json }},
+      "hakkimizda": {{ 'sections.not_developed.titles.about_us' | t | json }},
+      "about": {{ 'sections.not_developed.titles.about_us' | t | json }},
+      "surdurulebilirlik": {{ 'sections.not_developed.titles.sustainability' | t | json }},
+      "sustainability": {{ 'sections.not_developed.titles.sustainability' | t | json }},
+      "kavra-club": {{ 'sections.not_developed.titles.club' | t | json }},
+      "club": {{ 'sections.not_developed.titles.club' | t | json }},
+      "magazalar": {{ 'sections.not_developed.titles.stores' | t | json }},
+      "stores": {{ 'sections.not_developed.titles.stores' | t | json }},
+      "kariyer": {{ 'sections.not_developed.titles.careers' | t | json }},
+      "careers": {{ 'sections.not_developed.titles.careers' | t | json }},
+      "kargo-teslimat": {{ 'sections.not_developed.titles.shipping' | t | json }},
+      "shipping": {{ 'sections.not_developed.titles.shipping' | t | json }},
+      "iade-degisim": {{ 'sections.not_developed.titles.returns' | t | json }},
+      "returns": {{ 'sections.not_developed.titles.returns' | t | json }},
+      "sss": {{ 'sections.not_developed.titles.faq' | t | json }},
+      "faq": {{ 'sections.not_developed.titles.faq' | t | json }},
+      "beden-tablosu": {{ 'sections.not_developed.titles.size_guide' | t | json }},
+      "size-guide": {{ 'sections.not_developed.titles.size_guide' | t | json }},
+      "iletisim": {{ 'sections.not_developed.titles.contact' | t | json }},
+      "contact": {{ 'sections.not_developed.titles.contact' | t | json }},
+      "markalar": {{ 'sections.not_developed.titles.brands' | t | json }},
+      "brands": {{ 'sections.not_developed.titles.brands' | t | json }},
+      "outlet": {{ 'sections.not_developed.titles.outlet' | t | json }}
+    }
+  </script>
+  <script>
+    (function () {
+      try {
+        var mapEl = document.getElementById('NotDevelopedTopicMap-{{ section.id }}');
+        if (!mapEl) return;
+        var map = JSON.parse(mapEl.textContent || '{}');
+        var path = (window.location.pathname || '').toLowerCase();
+        var searchParams = new URLSearchParams(window.location.search);
+        var feature = (searchParams.get('feature') || searchParams.get('page') || '').toLowerCase();
+        var targetString = path + ' ' + feature;
+
+        var topicEl = document.querySelector('[data-not-developed-topic]');
+        if (!topicEl) return;
+
+        for (var key in map) {
+          if (targetString.indexOf(key) !== -1) {
+            topicEl.textContent = map[key];
+            topicEl.style.display = 'block';
+            break;
+          }
+        }
+      } catch (e) {}
+    })();
+  </script>
+</section>
+
+{% schema %}
+  {
+    "name": "Not developed yet",
+    "settings": [
+      {
+        "type": "text",
+        "id": "badge",
+        "label": "Badge text"
+      },
+      {
+        "type": "text",
+        "id": "title",
+        "label": "Custom title override"
+      },
+      {
+        "type": "textarea",
+        "id": "description",
+        "label": "Custom description override"
+      },
+      {
+        "type": "checkbox",
+        "id": "show_support",
+        "label": "Show customer support box",
+        "default": true
+      }
+    ],
+    "presets": [
+      {
+        "name": "Not developed yet"
+      }
+    ]
+  }
+{% endschema %}

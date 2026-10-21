@@ -1,0 +1,356 @@
+{%- liquid
+  assign is_kadin = false
+  assign coll_handle = collection.handle | downcase
+  assign sec_title = section.settings.title | downcase
+  if coll_handle contains 'kadin' or sec_title contains 'kadın' or sec_title contains 'women'
+    assign is_kadin = true
+  endif
+
+  assign base_collection_url = collection.url
+  if base_collection_url == blank
+    if is_kadin
+      assign base_collection_url = routes.collections_url | append: '/kadin-anasayfa'
+    else
+      assign base_collection_url = routes.collections_url | append: '/erkek-anasayfa'
+    endif
+  endif
+
+  # Card 1 Logic
+  assign title1 = section.settings.card1_title | default: 'AYAKKABI'
+  assign t1_lower = title1 | downcase
+  if is_kadin
+    if t1_lower contains 'çanta' or t1_lower contains 'canta' or t1_lower contains 'cüzdan' or t1_lower contains 'bag' or t1_lower contains 'wallet'
+      assign tag1 = 'canta'
+      assign default_img1 = 'https://images.unsplash.com/photo-1584917865442-de89df76afd3?auto=format&fit=crop&w=800&q=80'
+    elsif t1_lower contains 'ayakkabı' or t1_lower contains 'ayakkabi' or t1_lower contains 'çizme' or t1_lower contains 'bot' or t1_lower contains 'shoe' or t1_lower contains 'boot'
+      assign tag1 = 'ayakkabi'
+      assign default_img1 = 'https://images.unsplash.com/photo-1543163521-1bf539c55dd2?auto=format&fit=crop&w=800&q=80'
+    else
+      assign tag1 = 'deri-ceket'
+      assign default_img1 = 'https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?auto=format&fit=crop&w=800&q=80'
+    endif
+  else
+    if t1_lower contains 'ayakkabı' or t1_lower contains 'ayakkabi' or t1_lower contains 'loafer' or t1_lower contains 'sneaker' or t1_lower contains 'shoe'
+      assign tag1 = 'ayakkabi'
+      assign default_img1 = 'https://images.unsplash.com/photo-1533867617858-e7b97e060509?auto=format&fit=crop&w=800&q=80'
+    elsif t1_lower contains 'çanta' or t1_lower contains 'canta' or t1_lower contains 'evrak' or t1_lower contains 'sırt' or t1_lower contains 'bag' or t1_lower contains 'backpack'
+      assign tag1 = 'canta'
+      assign default_img1 = 'https://images.unsplash.com/photo-1553062407-98eeb64c6a62?auto=format&fit=crop&w=800&q=80'
+    else
+      assign tag1 = 'deri-ceket'
+      assign default_img1 = 'https://images.unsplash.com/photo-1520975954732-35dd22299614?auto=format&fit=crop&w=800&q=80'
+    endif
+  endif
+  if section.settings.card1_url != blank
+    assign card1_link = section.settings.card1_url
+  else
+    assign card1_link = base_collection_url | append: '/' | append: tag1
+  endif
+
+  # Card 2 Logic
+  assign title2 = section.settings.card2_title | default: 'ÇANTA'
+  assign t2_lower = title2 | downcase
+  if is_kadin
+    if t2_lower contains 'ayakkabı' or t2_lower contains 'ayakkabi' or t2_lower contains 'çizme' or t2_lower contains 'bot' or t2_lower contains 'shoe' or t2_lower contains 'boot'
+      assign tag2 = 'ayakkabi'
+      assign default_img2 = 'https://images.unsplash.com/photo-1543163521-1bf539c55dd2?auto=format&fit=crop&w=800&q=80'
+    elsif t2_lower contains 'çanta' or t2_lower contains 'canta' or t2_lower contains 'cüzdan' or t2_lower contains 'bag' or t2_lower contains 'wallet'
+      assign tag2 = 'canta'
+      assign default_img2 = 'https://images.unsplash.com/photo-1584917865442-de89df76afd3?auto=format&fit=crop&w=800&q=80'
+    else
+      assign tag2 = 'deri-ceket'
+      assign default_img2 = 'https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?auto=format&fit=crop&w=800&q=80'
+    endif
+  else
+    if t2_lower contains 'çanta' or t2_lower contains 'canta' or t2_lower contains 'evrak' or t2_lower contains 'sırt' or t2_lower contains 'bag' or t2_lower contains 'backpack'
+      assign tag2 = 'canta'
+      assign default_img2 = 'https://images.unsplash.com/photo-1553062407-98eeb64c6a62?auto=format&fit=crop&w=800&q=80'
+    elsif t2_lower contains 'ayakkabı' or t2_lower contains 'ayakkabi' or t2_lower contains 'loafer' or t2_lower contains 'sneaker' or t2_lower contains 'shoe'
+      assign tag2 = 'ayakkabi'
+      assign default_img2 = 'https://images.unsplash.com/photo-1533867617858-e7b97e060509?auto=format&fit=crop&w=800&q=80'
+    else
+      assign tag2 = 'deri-ceket'
+      assign default_img2 = 'https://images.unsplash.com/photo-1520975954732-35dd22299614?auto=format&fit=crop&w=800&q=80'
+    endif
+  endif
+  if section.settings.card2_url != blank
+    assign card2_link = section.settings.card2_url
+  else
+    assign card2_link = base_collection_url | append: '/' | append: tag2
+  endif
+
+  # Card 3 Logic
+  assign title3 = section.settings.card3_title | default: 'DERİ CEKET'
+  assign t3_lower = title3 | downcase
+  if is_kadin
+    if t3_lower contains 'ceket' or t3_lower contains 'kaban' or t3_lower contains 'trençkot' or t3_lower contains 'trenckot' or t3_lower contains 'jacket' or t3_lower contains 'coat'
+      assign tag3 = 'deri-ceket'
+      assign default_img3 = 'https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?auto=format&fit=crop&w=800&q=80'
+    elsif t3_lower contains 'çanta' or t3_lower contains 'canta' or t3_lower contains 'bag'
+      assign tag3 = 'canta'
+      assign default_img3 = 'https://images.unsplash.com/photo-1584917865442-de89df76afd3?auto=format&fit=crop&w=800&q=80'
+    else
+      assign tag3 = 'ayakkabi'
+      assign default_img3 = 'https://images.unsplash.com/photo-1543163521-1bf539c55dd2?auto=format&fit=crop&w=800&q=80'
+    endif
+  else
+    if t3_lower contains 'ceket' or t3_lower contains 'mont' or t3_lower contains 'kaban' or t3_lower contains 'jacket' or t3_lower contains 'coat'
+      assign tag3 = 'deri-ceket'
+      assign default_img3 = 'https://images.unsplash.com/photo-1520975954732-35dd22299614?auto=format&fit=crop&w=800&q=80'
+    elsif t3_lower contains 'çanta' or t3_lower contains 'canta' or t3_lower contains 'bag'
+      assign tag3 = 'canta'
+      assign default_img3 = 'https://images.unsplash.com/photo-1553062407-98eeb64c6a62?auto=format&fit=crop&w=800&q=80'
+    else
+      assign tag3 = 'ayakkabi'
+      assign default_img3 = 'https://images.unsplash.com/photo-1533867617858-e7b97e060509?auto=format&fit=crop&w=800&q=80'
+    endif
+  endif
+  if section.settings.card3_url != blank
+    assign card3_link = section.settings.card3_url
+  else
+    assign card3_link = base_collection_url | append: '/' | append: tag3
+  endif
+
+  assign card1_translation_key = blank
+  assign card1_default_text = blank
+  case title1
+    when 'AYAKKABI'
+      assign card1_translation_key = 'content.collection.shoes'
+      assign card1_default_text = 'AYAKKABI'
+    when 'ÇANTA'
+      assign card1_translation_key = 'content.collection.bags'
+      assign card1_default_text = 'ÇANTA'
+    when 'ÇANTA & CÜZDAN'
+      assign card1_translation_key = 'content.collection.women_bags'
+      assign card1_default_text = 'ÇANTA & CÜZDAN'
+  endcase
+
+  assign card2_translation_key = blank
+  assign card2_default_text = blank
+  case title2
+    when 'ÇANTA'
+      assign card2_translation_key = 'content.collection.bags'
+      assign card2_default_text = 'ÇANTA'
+    when 'AYAKKABI & ÇİZME'
+      assign card2_translation_key = 'content.collection.women_shoes'
+      assign card2_default_text = 'AYAKKABI & ÇİZME'
+  endcase
+
+  assign card3_translation_key = blank
+  assign card3_default_text = blank
+  case title3
+    when 'DERİ CEKET'
+      assign card3_translation_key = 'content.collection.jacket'
+      assign card3_default_text = 'DERİ CEKET'
+    when 'DERİ CEKET & KABAN'
+      assign card3_translation_key = 'content.collection.women_jackets'
+      assign card3_default_text = 'DERİ CEKET & KABAN'
+  endcase
+
+  capture card1_label
+    render 'localized-default', value: title1, default_text: card1_default_text, translation_key: card1_translation_key
+  endcapture
+  assign card1_label = card1_label | strip
+  capture card2_label
+    render 'localized-default', value: title2, default_text: card2_default_text, translation_key: card2_translation_key
+  endcapture
+  assign card2_label = card2_label | strip
+  capture card3_label
+    render 'localized-default', value: title3, default_text: card3_default_text, translation_key: card3_translation_key
+  endcapture
+  assign card3_label = card3_label | strip
+-%}
+
+<section class='quick-categories-section page-width' aria-labelledby='QuickCategoriesHeading'>
+  <div class='section-header-row'>
+    <h2 id='QuickCategoriesHeading' class='section-heading-title'>
+      {%- assign quick_title = section.settings.title | default: 'Yeni Sezona İlk Bakış' -%}
+      {%- assign quick_title_translation_key = blank -%}
+      {%- assign quick_title_default_text = blank -%}
+      {%- if quick_title == 'Yeni Sezona İlk Bakış' -%}
+        {%- assign quick_title_translation_key = 'content.collection.quick_title' -%}
+        {%- assign quick_title_default_text = 'Yeni Sezona İlk Bakış' -%}
+      {%- elsif quick_title == 'Yeni Sezon Kadın Koleksiyonu' -%}
+        {%- assign quick_title_translation_key = 'content.collection.women_collection_title' -%}
+        {%- assign quick_title_default_text = 'Yeni Sezon Kadın Koleksiyonu' -%}
+      {%- endif -%}
+      {%- render 'localized-default',
+        value: quick_title,
+        default_text: quick_title_default_text,
+        translation_key: quick_title_translation_key
+      -%}
+    </h2>
+    <a
+      href='{{ section.settings.link_url | default: base_collection_url }}'
+      class='section-heading-link'
+    >
+      {%- render 'localized-default',
+        value: section.settings.link_text,
+        default_text: 'Tümünü Gör',
+        translation_key: 'content.collection.view_all'
+      -%}
+      {% render 'icon-arrow' %}
+    </a>
+  </div>
+
+  <div class='quick-categories-grid'>
+    <!-- Card 1 -->
+    <a
+      href='{{ card1_link }}'
+      class='quick-category-card'
+    >
+      <div class='quick-category-media'>
+        {%- if section.settings.card1_image != blank -%}
+          {{
+            section.settings.card1_image
+            | image_url: width: 800
+            | image_tag: loading: 'lazy', alt: card1_label
+          }}
+        {%- else -%}
+          <img
+            src='{{ default_img1 }}'
+            alt='{{ card1_label | escape }}'
+            loading='lazy'
+            width='800'
+            height='1067'
+          >
+        {%- endif -%}
+      </div>
+      <div class='quick-category-label'>
+        {{ card1_label }}
+      </div>
+    </a>
+
+    <!-- Card 2 -->
+    <a
+      href='{{ card2_link }}'
+      class='quick-category-card'
+    >
+      <div class='quick-category-media'>
+        {%- if section.settings.card2_image != blank -%}
+          {{
+            section.settings.card2_image
+            | image_url: width: 800
+            | image_tag: loading: 'lazy', alt: card2_label
+          }}
+        {%- else -%}
+          <img
+            src='{{ default_img2 }}'
+            alt='{{ card2_label | escape }}'
+            loading='lazy'
+            width='800'
+            height='1067'
+          >
+        {%- endif -%}
+      </div>
+      <div class='quick-category-label'>
+        {{ card2_label }}
+      </div>
+    </a>
+
+    <!-- Card 3 -->
+    <a
+      href='{{ card3_link }}'
+      class='quick-category-card'
+    >
+      <div class='quick-category-media'>
+        {%- if section.settings.card3_image != blank -%}
+          {{
+            section.settings.card3_image
+            | image_url: width: 800
+            | image_tag: loading: 'lazy', alt: card3_label
+          }}
+        {%- else -%}
+          <img
+            src='{{ default_img3 }}'
+            alt='{{ card3_label | escape }}'
+            loading='lazy'
+            width='800'
+            height='1067'
+          >
+        {%- endif -%}
+      </div>
+      <div class='quick-category-label'>
+        {{ card3_label }}
+      </div>
+    </a>
+  </div>
+</section>
+
+{% schema %}
+  {
+    "name": "Quick category navigation",
+    "settings": [
+      {
+        "type": "text",
+        "id": "title",
+        "label": "Section title",
+        "default": "Yeni Sezona İlk Bakış"
+      },
+      {
+        "type": "text",
+        "id": "link_text",
+        "label": "Link text",
+        "default": "Tümünü Gör"
+      },
+      {
+        "type": "url",
+        "id": "link_url",
+        "label": "Link URL"
+      },
+      {
+        "type": "text",
+        "id": "card1_title",
+        "label": "Card 1 title",
+        "default": "AYAKKABI"
+      },
+      {
+        "type": "image_picker",
+        "id": "card1_image",
+        "label": "Card 1 image"
+      },
+      {
+        "type": "url",
+        "id": "card1_url",
+        "label": "Card 1 URL"
+      },
+      {
+        "type": "text",
+        "id": "card2_title",
+        "label": "Card 2 title",
+        "default": "ÇANTA"
+      },
+      {
+        "type": "image_picker",
+        "id": "card2_image",
+        "label": "Card 2 image"
+      },
+      {
+        "type": "url",
+        "id": "card2_url",
+        "label": "Card 2 URL"
+      },
+      {
+        "type": "text",
+        "id": "card3_title",
+        "label": "Card 3 title",
+        "default": "DERİ CEKET"
+      },
+      {
+        "type": "image_picker",
+        "id": "card3_image",
+        "label": "Card 3 image"
+      },
+      {
+        "type": "url",
+        "id": "card3_url",
+        "label": "Card 3 URL"
+      }
+    ],
+    "presets": [
+      {
+        "name": "Quick category navigation"
+      }
+    ]
+  }
+{% endschema %}

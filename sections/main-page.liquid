@@ -1,0 +1,19 @@
+<section class='page-default-section page-width'>
+  <div class='page-default-container'>
+    <h1 class='page-default-title'>{{ page.title }}</h1>
+    <div class='page-default-content rte'>
+      {%- if page.content != blank -%}
+        {{ page.content }}
+      {%- else -%}
+        <p>{{ 'sections.not_developed.default_description' | t }}</p>
+      {%- endif -%}
+    </div>
+  </div>
+</section>
+
+{% schema %}
+  {
+    "name": "Page content",
+    "settings": []
+  }
+{% endschema %}

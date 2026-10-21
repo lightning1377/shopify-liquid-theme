@@ -1,0 +1,222 @@
+<section class='editorial-storytelling-section page-width' aria-labelledby='EditorialStoryHeading'>
+  <div class='editorial-story-split'>
+    <!-- Left: Editorial Campaign Box -->
+    <div class='editorial-banner-box'>
+      <span class='editorial-badge-pill'>
+        {%- assign badge_translation_key = 'content.campaign.badge' -%}
+        {%- assign badge_default_text = 'ÖZEL KAMPANYA' -%}
+        {%- if section.settings.badge_text == 'KADIN ÖZEL KOLEKSİYON' -%}
+          {%- assign badge_translation_key = 'content.campaign.women_badge' -%}
+          {%- assign badge_default_text = 'KADIN ÖZEL KOLEKSİYON' -%}
+        {%- endif -%}
+        {%- render 'localized-default',
+          value: section.settings.badge_text,
+          default_text: badge_default_text,
+          translation_key: badge_translation_key
+        -%}
+      </span>
+      <h2 id='EditorialStoryHeading' class='editorial-big-text'>
+        {%- assign headline1_translation_key = 'content.campaign.jackets' -%}
+        {%- assign headline1_default_text = 'DERİ CEKETLERDE' -%}
+        {%- if section.settings.main_headline_1 == 'İTALYAN DERİ ÇANTALARDA' -%}
+          {%- assign headline1_translation_key = 'content.campaign.women_bags' -%}
+          {%- assign headline1_default_text = 'İTALYAN DERİ ÇANTALARDA' -%}
+        {%- endif -%}
+        {%- render 'localized-default',
+          value: section.settings.main_headline_1,
+          default_text: headline1_default_text,
+          translation_key: headline1_translation_key
+        -%}
+        <br>
+        <span class='accent-text'>
+          {%- assign headline2_translation_key = 'content.campaign.first_item' -%}
+          {%- assign headline2_default_text = '1. ÜRÜNE %20' -%}
+          {%- if section.settings.main_headline_2 == 'ZAMANSIZ ŞIKLIK' -%}
+            {%- assign headline2_translation_key = 'content.campaign.women_style' -%}
+            {%- assign headline2_default_text = 'ZAMANSIZ ŞIKLIK' -%}
+          {%- endif -%}
+          {%- render 'localized-default',
+            value: section.settings.main_headline_2,
+            default_text: headline2_default_text,
+            translation_key: headline2_translation_key
+          -%}</span
+        ><br>
+        {%- assign headline3_translation_key = 'content.campaign.second_item' -%}
+        {%- assign headline3_default_text = '+ 2. ÜRÜNE %40' -%}
+        {%- if section.settings.main_headline_3 == 'SEÇİLİ ÜRÜNLERDE %30' -%}
+          {%- assign headline3_translation_key = 'content.campaign.women_discount' -%}
+          {%- assign headline3_default_text = 'SEÇİLİ ÜRÜNLERDE %30' -%}
+        {%- endif -%}
+        {%- render 'localized-default',
+          value: section.settings.main_headline_3,
+          default_text: headline3_default_text,
+          translation_key: headline3_translation_key
+        -%}
+      </h2>
+      <p class='editorial-subtext'>
+        {%- assign subtext_translation_key = 'content.campaign.description' -%}
+        {%- assign subtext_default_text = 'Giy süetini, çık sokağa. Dokusu güçlü, etkisi zamansız tasarımlar sezonun öne çıkan parçaları arasında.' -%}
+        {%- if section.settings.subtext
+            == 'Yumuşak dokusu ve zarafetiyle stilinizi tamamlayacak el işçiliği deri parçalar.'
+        -%}
+          {%- assign subtext_translation_key = 'content.campaign.women_description' -%}
+          {%- assign subtext_default_text = 'Yumuşak dokusu ve zarafetiyle stilinizi tamamlayacak el işçiliği deri parçalar.' -%}
+        {%- endif -%}
+        {%- render 'localized-default',
+          value: section.settings.subtext,
+          default_text: subtext_default_text,
+          translation_key: subtext_translation_key
+        -%}
+      </p>
+      <div>
+        {%- capture fallback_editorial_cta -%}
+          {%- if collection.handle contains 'kadin' -%}
+            {{ routes.collections_url }}/kadin-anasayfa/canta
+          {%- else -%}
+            {{ routes.collections_url }}/erkek-anasayfa/deri-ceket
+          {%- endif -%}
+        {%- endcapture -%}
+        {%- assign editorial_cta_url = section.settings.cta_link
+          | default: fallback_editorial_cta
+          | strip
+        -%}
+        <a
+          href='{{ editorial_cta_url }}'
+          class='campaign-hero-link'
+        >
+          {%- assign cta_translation_key = 'content.campaign.explore' -%}
+          {%- render 'localized-default',
+            value: section.settings.cta_text,
+            default_text: 'Koleksiyonu İncele',
+            translation_key: cta_translation_key
+          -%}
+          &rarr;
+        </a>
+      </div>
+    </div>
+
+    <!-- Right: Curated Product Showcase -->
+    <div class='editorial-story-products'>
+      {%- assign showcase_collection = collections[section.settings.collection]
+        | default: collection
+      -%}
+      {%- for product in showcase_collection.products limit: 3 -%}
+        {% render 'product-card', product: product %}
+      {%- else -%}
+        <!-- Clean Mock Product Cards for Preview/Theme Editor -->
+        <article class='product-card'>
+          <div class='product-card-media-wrap'>
+            <span class='badge-tag badge-tag--promo'>
+              {{ 'products.product.discount_in_cart' | t }}
+            </span>
+            <div style='width: 100%; height: 100%; background: #EAE6DE; display: flex; align-items: center; justify-content: center; color: #7B7569; font-size: 0.75rem;'>
+              {{ 'content.preview.leather_jacket' | t }}
+            </div>
+          </div>
+          <div class='product-card-info'>
+            <h3 class='product-card-title'>{{ 'content.preview.product_1' | t }}</h3>
+            <div class='price-box price-box--sale'>
+              <span class='price-current'>23.999,20 TL</span>
+              <span class='price-compare'>29.999,00 TL</span>
+            </div>
+          </div>
+        </article>
+
+        <article class='product-card'>
+          <div class='product-card-media-wrap'>
+            <span class='badge-tag badge-tag--promo'>
+              {{ 'products.product.discount_in_cart' | t }}
+            </span>
+            <div style='width: 100%; height: 100%; background: #E4DFD5; display: flex; align-items: center; justify-content: center; color: #7B7569; font-size: 0.75rem;'>
+              {{ 'content.preview.leather_jacket' | t }}
+            </div>
+          </div>
+          <div class='product-card-info'>
+            <h3 class='product-card-title'>{{ 'content.preview.product_2' | t }}</h3>
+            <div class='price-box price-box--sale'>
+              <span class='price-current'>20.799,20 TL</span>
+              <span class='price-compare'>25.999,00 TL</span>
+            </div>
+          </div>
+        </article>
+
+        <article class='product-card'>
+          <div class='product-card-media-wrap'>
+            <span class='badge-tag badge-tag--promo'>
+              {{ 'products.product.discount_in_cart' | t }}
+            </span>
+            <div style='width: 100%; height: 100%; background: #DFD9CD; display: flex; align-items: center; justify-content: center; color: #7B7569; font-size: 0.75rem;'>
+              {{ 'content.preview.leather_jacket' | t }}
+            </div>
+          </div>
+          <div class='product-card-info'>
+            <h3 class='product-card-title'>{{ 'content.preview.product_3' | t }}</h3>
+            <div class='price-box price-box--sale'>
+              <span class='price-current'>15.999,20 TL</span>
+              <span class='price-compare'>19.999,00 TL</span>
+            </div>
+          </div>
+        </article>
+      {%- endfor -%}
+    </div>
+  </div>
+</section>
+
+{% schema %}
+  {
+    "name": "Editorial storytelling",
+    "settings": [
+      {
+        "type": "text",
+        "id": "badge_text",
+        "label": "Badge text",
+        "default": "ÖZEL KAMPANYA"
+      },
+      {
+        "type": "text",
+        "id": "main_headline_1",
+        "label": "Headline Line 1",
+        "default": "DERİ CEKETLERDE"
+      },
+      {
+        "type": "text",
+        "id": "main_headline_2",
+        "label": "Headline Line 2 (Accent)",
+        "default": "1. ÜRÜNE %20"
+      },
+      {
+        "type": "text",
+        "id": "main_headline_3",
+        "label": "Headline Line 3",
+        "default": "+ 2. ÜRÜNE %40"
+      },
+      {
+        "type": "textarea",
+        "id": "subtext",
+        "label": "Subtext",
+        "default": "Giy süetini, çık sokağa. Dokusu güçlü, etkisi zamansız tasarımlar sezonun öne çıkan parçaları arasında."
+      },
+      {
+        "type": "text",
+        "id": "cta_text",
+        "label": "Button text",
+        "default": "Koleksiyonu İncele"
+      },
+      {
+        "type": "url",
+        "id": "cta_link",
+        "label": "Button link"
+      },
+      {
+        "type": "collection",
+        "id": "collection",
+        "label": "Featured collection"
+      }
+    ],
+    "presets": [
+      {
+        "name": "Editorial storytelling"
+      }
+    ]
+  }
+{% endschema %}

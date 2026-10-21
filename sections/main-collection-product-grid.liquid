@@ -1,0 +1,241 @@
+<section class='collection-product-grid-section page-width' id='ProductGrid'>
+  <form id='CollectionFilterForm' method='get'>
+    <!-- Toolbar -->
+    <div class='collection-toolbar'>
+      <div class='collection-product-count'>
+        <span>
+          {{ 'sections.collection.product_count' | t: count: collection.products_count }}
+        </span>
+      </div>
+
+      <div class='collection-toolbar-actions'>
+        <!-- Filter Button -->
+        <button
+          type='button'
+          class='filter-toggle-btn'
+          aria-expanded='false'
+          aria-controls='FilterDrawer'
+          data-filter-toggle
+        >
+          <svg
+            width='16'
+            height='16'
+            viewBox='0 0 24 24'
+            fill='none'
+            stroke='currentColor'
+            stroke-width='2'
+            stroke-linecap='round'
+            stroke-linejoin='round'
+          >
+            <line x1="4" y1="21" x2="4" y2="14"></line>
+            <line x1="4" y1="10" x2="4" y2="3"></line>
+            <line x1="12" y1="21" x2="12" y2="12"></line>
+            <line x1="12" y1="8" x2="12" y2="3"></line>
+            <line x1="20" y1="21" x2="20" y2="16"></line>
+            <line x1="20" y1="12" x2="20" y2="3"></line>
+            <line x1="1" y1="14" x2="7" y2="14"></line>
+            <line x1="9" y1="8" x2="15" y2="8"></line>
+            <line x1="17" y1="16" x2="23" y2="16"></line>
+          </svg>
+          <span>{{ 'sections.collection.filter' | t }}</span>
+        </button>
+
+        <!-- Sort Select -->
+        <div class='sort-select-wrap'>
+          <label for='SortBy'>{{ 'sections.collection.sort' | t }}</label>
+          <select id='SortBy' name='sort_by' class='sort-select' onchange='this.form.submit()'>
+            {%- assign sort_by = collection.sort_by | default: collection.default_sort_by -%}
+            <option
+              value='manual'
+              {% if sort_by == 'manual' %}
+                selected
+              {% endif %}
+            >
+              {{ 'sections.collection.sort_featured' | t }}
+            </option>
+            <option
+              value='best-selling'
+              {% if sort_by == 'best-selling' %}
+                selected
+              {% endif %}
+            >
+              {{ 'sections.collection.sort_best_selling' | t }}
+            </option>
+            <option
+              value='created-descending'
+              {% if sort_by == 'created-descending' %}
+                selected
+              {% endif %}
+            >
+              {{ 'sections.collection.sort_newest' | t }}
+            </option>
+            <option
+              value='price-ascending'
+              {% if sort_by == 'price-ascending' %}
+                selected
+              {% endif %}
+            >
+              {{ 'sections.collection.sort_price_ascending' | t }}
+            </option>
+            <option
+              value='price-descending'
+              {% if sort_by == 'price-descending' %}
+                selected
+              {% endif %}
+            >
+              {{ 'sections.collection.sort_price_descending' | t }}
+            </option>
+          </select>
+        </div>
+      </div>
+    </div>
+
+    <!-- Filter Drawer (Shopify Collection Facets) -->
+    <div class='filter-drawer-backdrop' data-filter-backdrop></div>
+    <div
+      class='filter-drawer'
+      id='FilterDrawer'
+      role='dialog'
+      aria-modal='true'
+      aria-label='{{ 'sections.collection.filters' | t }}'
+    >
+      <div class='filter-drawer-header'>
+        <h3 style='font-size: 1rem; font-weight: 700; margin: 0; text-transform: uppercase;'>
+          {{ 'sections.collection.filters' | t }}
+        </h3>
+        <button
+          type='button'
+          aria-label='{{ 'general.accessibility.close' | t }}'
+          data-filter-close
+        >
+          {% render 'icon-close' %}
+        </button>
+      </div>
+
+      <div class='filter-drawer-content'>
+        {%- if collection.filters.size > 0 -%}
+          {%- for filter in collection.filters -%}
+            <fieldset class='facet-group'>
+              <legend class='facet-group-legend'>{{ filter.label }}</legend>
+              {%- for value in filter.values -%}
+                <label class='facet-item'>
+                  <input
+                    type='checkbox'
+                    name='{{ value.param_name }}'
+                    value='{{ value.value }}'
+                    class='facet-checkbox'
+                    {% if value.active %}
+                      checked
+                    {% endif %}
+                    {% if value.count == 0 and value.active == false %}
+                      disabled
+                    {% endif %}
+                  >
+                  <span>{{ value.label }} ({{ value.count }})</span>
+                </label>
+              {%- endfor -%}
+            </fieldset>
+          {%- endfor -%}
+        {%- else -%}
+          <!-- Fallback Category Facets for preview -->
+          <fieldset class='facet-group'>
+            <legend class='facet-group-legend'>{{ 'sections.collection.category' | t }}</legend>
+            <label class='facet-item'
+              ><input type='checkbox' class='facet-checkbox'>
+              {{ 'sections.collection.fallback_leather_jacket' | t -}}
+            </label>
+            <label class='facet-item'
+              ><input type='checkbox' class='facet-checkbox'>
+              {{ 'sections.collection.fallback_loafer_casual' | t -}}
+            </label>
+            <label class='facet-item'>
+              <input type='checkbox' class='facet-checkbox'>
+              {{ 'sections.collection.fallback_sneaker' | t }}
+            </label>
+            <label class='facet-item'
+              ><input type='checkbox' class='facet-checkbox'>
+              {{ 'sections.collection.fallback_leather_bag' | t -}}
+            </label>
+          </fieldset>
+
+          <fieldset class='facet-group'>
+            <legend class='facet-group-legend'>{{ 'sections.collection.size' | t }}</legend>
+            <label class='facet-item'><input type='checkbox' class='facet-checkbox'> S / 40</label>
+            <label class='facet-item'><input type='checkbox' class='facet-checkbox'> M / 41</label>
+            <label class='facet-item'><input type='checkbox' class='facet-checkbox'> L / 42</label>
+            <label class='facet-item'><input type='checkbox' class='facet-checkbox'> XL / 43</label>
+          </fieldset>
+        {%- endif -%}
+      </div>
+
+      <div class='filter-drawer-footer'>
+        <a
+          href='{{ collection.url }}'
+          style='padding: 0.75rem 1rem; border: 1px solid var(--color-border); border-radius: var(--radius-xs); font-size: 0.8125rem; font-weight: 600; text-align: center; flex: 1;'
+        >
+          {{ 'sections.collection.clear' | t }}
+        </a>
+        <button
+          type='submit'
+          style='padding: 0.75rem 1rem; background: var(--color-text); color: var(--color-white); border-radius: var(--radius-xs); font-size: 0.8125rem; font-weight: 600; text-align: center; flex: 1;'
+        >
+          {{ 'sections.collection.apply' | t }}
+        </button>
+      </div>
+    </div>
+  </form>
+
+  <!-- Product Grid -->
+  {%- paginate collection.products by section.settings.products_per_page -%}
+    <div class='product-grid'>
+      {%- for product in collection.products -%}
+        {% render 'product-card', product: product %}
+      {%- else -%}
+        <div style='grid-column: 1 / -1; padding: 4rem 1rem; text-align: center;'>
+          <h3 style='font-size: 1.25rem; font-weight: 600; margin-bottom: 0.75rem;'>
+            {{ 'sections.collection.empty_title' | t }}
+          </h3>
+          <p style='color: var(--color-muted); margin-bottom: 1.5rem;'>
+            {{ 'sections.collection.empty_description' | t }}
+          </p>
+          <a
+            href='{{ routes.all_products_collection_url }}'
+            style='display: inline-block; padding: 0.75rem 1.5rem; background: var(--color-text); color: var(--color-white); border-radius: var(--radius-xs); font-size: 0.8125rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.08em;'
+          >
+            {{ 'sections.collection.browse_all' | t }}
+          </a>
+        </div>
+      {%- endfor -%}
+    </div>
+
+    {%- if paginate.pages > 1 -%}
+      <nav class='pagination-container' aria-label='{{ 'sections.collection.pages' | t }}'>
+        <div class='pagination-links'>
+          {{ paginate | default_pagination }}
+        </div>
+      </nav>
+    {%- endif -%}
+  {%- endpaginate -%}
+</section>
+
+{% schema %}
+  {
+    "name": "Collection product grid",
+    "settings": [
+      {
+        "type": "range",
+        "id": "products_per_page",
+        "label": "Products per page",
+        "min": 8,
+        "max": 32,
+        "step": 4,
+        "default": 16
+      }
+    ],
+    "presets": [
+      {
+        "name": "Collection product grid"
+      }
+    ]
+  }
+{% endschema %}

@@ -1,0 +1,42 @@
+{
+  "sections": {
+    "banner": {
+      "type": "main-collection-banner",
+      "settings": {
+        "eyebrow": "KAVRA / KADIN",
+        "show_banner": true,
+        "banner_eyebrow": "FALL WINTER 26—27",
+        "banner_title": "Zarif silüetler, kusursuz deri zanaatı.",
+        "banner_link_text": "Koleksiyonu İncele"
+      }
+    },
+    "quick_nav": {
+      "type": "collection-quick-nav",
+      "settings": {
+        "title": "Yeni Sezon Kadın Koleksiyonu",
+        "link_text": "Tümünü Gör",
+        "card1_title": "ÇANTA & CÜZDAN",
+        "card2_title": "AYAKKABI & ÇİZME",
+        "card3_title": "DERİ CEKET & KABAN"
+      }
+    },
+    "editorial_story": {
+      "type": "editorial-storytelling",
+      "settings": {
+        "badge_text": "KADIN ÖZEL KOLEKSİYON",
+        "main_headline_1": "İTALYAN DERİ ÇANTALARDA",
+        "main_headline_2": "ZAMANSIZ ŞIKLIK",
+        "main_headline_3": "SEÇİLİ ÜRÜNLERDE %30",
+        "subtext": "Yumuşak dokusu ve zarafetiyle stilinizi tamamlayacak el işçiliği deri parçalar.",
+        "cta_text": "Koleksiyonu Keşfet"
+      }
+    },
+    "grid": {
+      "type": "main-collection-product-grid",
+      "settings": {
+        "products_per_page": 16
+      }
+    }
+  },
+  "order": ["banner", "quick_nav", "editorial_story", "grid"]
+}

@@ -1,0 +1,42 @@
+{
+  "sections": {
+    "banner": {
+      "type": "main-collection-banner",
+      "settings": {
+        "eyebrow": "KAVRA / ERKEK",
+        "show_banner": true,
+        "banner_eyebrow": "FALL WINTER 26—27",
+        "banner_title": "Dokusu güçlü, etkisi zamansız.",
+        "banner_link_text": "Koleksiyonu İncele"
+      }
+    },
+    "quick_nav": {
+      "type": "collection-quick-nav",
+      "settings": {
+        "title": "Yeni Sezona İlk Bakış",
+        "link_text": "Tümünü Gör",
+        "card1_title": "AYAKKABI",
+        "card2_title": "ÇANTA",
+        "card3_title": "DERİ CEKET"
+      }
+    },
+    "editorial_story": {
+      "type": "editorial-storytelling",
+      "settings": {
+        "badge_text": "ÖZEL KAMPANYA",
+        "main_headline_1": "DERİ CEKETLERDE",
+        "main_headline_2": "1. ÜRÜNE %20",
+        "main_headline_3": "+ 2. ÜRÜNE %40",
+        "subtext": "Giy süetini, çık sokağa. Dokusu güçlü, etkisi zamansız tasarımlar sezonun öne çıkan parçaları arasında.",
+        "cta_text": "Koleksiyonu İncele"
+      }
+    },
+    "grid": {
+      "type": "main-collection-product-grid",
+      "settings": {
+        "products_per_page": 16
+      }
+    }
+  },
+  "order": ["banner", "quick_nav", "editorial_story", "grid"]
+}

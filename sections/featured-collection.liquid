@@ -1,0 +1,97 @@
+{%- assign featured = collections[section.settings.collection] | default: collections.all -%}
+
+<section
+  class='quick-categories-section page-width'
+  aria-labelledby='FeaturedHeading-{{ section.id }}'
+>
+  <div class='section-header-row'>
+    <div>
+      <p class='collection-intro-eyebrow'>
+        {%- assign eyebrow_translation_key = 'content.featured.eyebrow' -%}
+        {%- assign eyebrow_default_text = 'Seçtiklerimiz' -%}
+        {%- if section.settings.eyebrow == 'Kombini Tamamla' -%}
+          {%- assign eyebrow_translation_key = 'content.featured.recommendations_eyebrow' -%}
+          {%- assign eyebrow_default_text = 'Kombini Tamamla' -%}
+        {%- endif -%}
+        {%- render 'localized-default',
+          value: section.settings.eyebrow,
+          default_text: eyebrow_default_text,
+          translation_key: eyebrow_translation_key
+        -%}
+      </p>
+      <h2 id='FeaturedHeading-{{ section.id }}' class='section-heading-title'>
+        {%- render 'localized-default',
+          value: section.settings.title,
+          default_text: 'Birlikte İyi Gider',
+          translation_key: 'content.featured.title'
+        -%}
+      </h2>
+    </div>
+    {%- if featured.url != blank -%}
+      <a href='{{ featured.url }}' class='section-heading-link'>
+        {{ 'sections.featured.view_all' | t }}
+        {% render 'icon-arrow' %}
+      </a>
+    {%- endif -%}
+  </div>
+
+  <div class='product-grid'>
+    {%- for product in featured.products limit: section.settings.products_to_show -%}
+      {% render 'product-card', product: product %}
+    {%- else -%}
+      <!-- Fallback cards for empty/theme editor state -->
+      {%- for i in (1..section.settings.products_to_show) -%}
+        <article class='product-card'>
+          <div class='product-card-media-wrap'>
+            {{ 'product-' | append: i | placeholder_svg_tag }}
+          </div>
+          <div class='product-card-info'>
+            <h3 class='product-card-title'>{{ 'content.featured.product' | t }}</h3>
+            <div class='price-box'>
+              <span class='price-current'>4.299,00 TL</span>
+            </div>
+          </div>
+        </article>
+      {%- endfor -%}
+    {%- endfor -%}
+  </div>
+</section>
+
+{% schema %}
+  {
+    "name": "Featured collection",
+    "settings": [
+      {
+        "type": "text",
+        "id": "eyebrow",
+        "label": "Eyebrow",
+        "default": "Seçtiklerimiz"
+      },
+      {
+        "type": "text",
+        "id": "title",
+        "label": "Title",
+        "default": "Birlikte İyi Gider"
+      },
+      {
+        "type": "collection",
+        "id": "collection",
+        "label": "Collection"
+      },
+      {
+        "type": "range",
+        "id": "products_to_show",
+        "label": "Products to show",
+        "min": 2,
+        "max": 8,
+        "step": 1,
+        "default": 4
+      }
+    ],
+    "presets": [
+      {
+        "name": "Featured collection"
+      }
+    ]
+  }
+{% endschema %}

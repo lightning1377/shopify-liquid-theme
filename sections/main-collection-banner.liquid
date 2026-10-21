@@ -1,0 +1,139 @@
+{% render 'breadcrumbs', page_title: collection.title %}
+
+<section class='collection-hero page-width'>
+  <div class='collection-intro-heading'>
+    <p class='collection-intro-eyebrow'>
+      {%- assign eyebrow_translation_key = 'content.collection.men_eyebrow' -%}
+      {%- assign eyebrow_default_text = 'KAVRA / ERKEK' -%}
+      {%- if section.settings.eyebrow == 'KAVRA / KADIN' -%}
+        {%- assign eyebrow_translation_key = 'content.collection.women_eyebrow' -%}
+        {%- assign eyebrow_default_text = 'KAVRA / KADIN' -%}
+      {%- endif -%}
+      {%- render 'localized-default',
+        value: section.settings.eyebrow,
+        default_text: eyebrow_default_text,
+        translation_key: eyebrow_translation_key
+      -%}
+    </p>
+    <h1 class='collection-title'>{{ collection.title }}</h1>
+    {%- if collection.description != blank -%}
+      <div class='collection-description'>{{ collection.description }}</div>
+    {%- endif -%}
+  </div>
+
+  {%- if section.settings.show_banner -%}
+    <div class='campaign-hero-banner'>
+      <div class='campaign-hero-media'>
+        {%- if section.settings.banner_image != blank -%}
+          {{
+            section.settings.banner_image
+            | image_url: width: 1800
+            | image_tag:
+              loading: 'eager',
+              widths: '750, 1100, 1500, 1800',
+              alt: section.settings.banner_title
+          }}
+        {%- else -%}
+          <!-- Modern fallback editorial SVG / placeholder -->
+          <svg
+            width='100%'
+            height='100%'
+            viewBox='0 0 1800 600'
+            preserveAspectRatio='xMidYMid slice'
+            fill='none'
+            xmlns='http://www.w3.org/2000/svg'
+          >
+            <rect width="1800" height="600" fill="#3D4035"/>
+            <path d="M0 0L1800 600H0V0Z" fill="#33362C" fill-opacity="0.4"/>
+            <circle cx="1400" cy="300" r="280" fill="#4B4F42" fill-opacity="0.3"/>
+          </svg>
+        {%- endif -%}
+      </div>
+
+      <div class='campaign-hero-overlay'>
+        <p class='campaign-hero-eyebrow'>
+          {%- assign season_translation_key = 'content.collection.season' -%}
+          {%- assign season_default_text = 'Yeni Sezon / 26—27' -%}
+          {%- if section.settings.banner_eyebrow == 'FALL WINTER 26—27' -%}
+            {%- assign season_translation_key = 'content.collection.fall_winter' -%}
+            {%- assign season_default_text = 'FALL WINTER 26—27' -%}
+          {%- endif -%}
+          {%- render 'localized-default',
+            value: section.settings.banner_eyebrow,
+            default_text: season_default_text,
+            translation_key: season_translation_key
+          -%}
+        </p>
+        <h2 class='campaign-hero-title'>
+          {%- assign banner_translation_key = 'content.collection.men_banner' -%}
+          {%- assign banner_default_text = 'Dokusu güçlü, etkisi zamansız.' -%}
+          {%- if section.settings.banner_title == 'Zarif silüetler, kusursuz deri zanaatı.' -%}
+            {%- assign banner_translation_key = 'content.collection.women_banner' -%}
+            {%- assign banner_default_text = 'Zarif silüetler, kusursuz deri zanaatı.' -%}
+          {%- endif -%}
+          {%- render 'localized-default',
+            value: section.settings.banner_title,
+            default_text: banner_default_text,
+            translation_key: banner_translation_key
+          -%}
+        </h2>
+        <a href='#ProductGrid' class='campaign-hero-link'>
+          {%- render 'localized-default',
+            value: section.settings.banner_link_text,
+            default_text: 'Koleksiyonu İncele',
+            translation_key: 'content.collection.explore'
+          -%}
+          &rarr;
+        </a>
+      </div>
+    </div>
+  {%- endif -%}
+</section>
+
+{% schema %}
+  {
+    "name": "Collection banner",
+    "settings": [
+      {
+        "type": "text",
+        "id": "eyebrow",
+        "label": "Eyebrow",
+        "default": "KAVRA / ERKEK"
+      },
+      {
+        "type": "checkbox",
+        "id": "show_banner",
+        "label": "Show campaign banner",
+        "default": true
+      },
+      {
+        "type": "image_picker",
+        "id": "banner_image",
+        "label": "Banner image"
+      },
+      {
+        "type": "text",
+        "id": "banner_eyebrow",
+        "label": "Banner eyebrow",
+        "default": "Yeni Sezon / 26—27"
+      },
+      {
+        "type": "text",
+        "id": "banner_title",
+        "label": "Banner title",
+        "default": "Dokusu güçlü, etkisi zamansız."
+      },
+      {
+        "type": "text",
+        "id": "banner_link_text",
+        "label": "Banner link text",
+        "default": "Koleksiyonu İncele"
+      }
+    ],
+    "presets": [
+      {
+        "name": "Collection banner"
+      }
+    ]
+  }
+{% endschema %}

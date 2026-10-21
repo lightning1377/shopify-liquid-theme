@@ -1,0 +1,226 @@
+{% render 'breadcrumbs', page_title: product.title, collection: collection %}
+
+{%- assign current_variant = product.selected_or_first_available_variant -%}
+
+<section
+  class='product-detail-section page-width'
+  id='ProductSection-{{ section.id }}'
+  data-section-id='{{ section.id }}'
+>
+  <div class='product-detail-layout'>
+    <!-- Left: Product Image Gallery -->
+    <div class='product-gallery-grid'>
+      {%- if product.images.size > 0 -%}
+        {%- for image in product.images -%}
+          <div class='product-gallery-item'>
+            {%- if forloop.first -%}
+              {{
+                image
+                | image_url: width: 1200
+                | image_tag: loading: 'eager', widths: '600, 900, 1200', alt: image.alt
+                | default: product.title
+              }}
+            {%- else -%}
+              {{
+                image
+                | image_url: width: 1200
+                | image_tag: loading: 'lazy', widths: '600, 900, 1200', alt: image.alt
+                | default: product.title
+              }}
+            {%- endif -%}
+          </div>
+        {%- endfor -%}
+      {%- else -%}
+        {%- capture pdp_img_src -%}{% render 'product-image-url', product: product %}{%- endcapture -%}
+        {%- capture pdp_img_src_sec -%}{% render 'product-image-url', product: product, image_role: 'secondary' %}{%- endcapture -%}
+        <div class='product-gallery-item'>
+          <img
+            src='{{ pdp_img_src | strip }}'
+            alt='{{ product.title | escape }}'
+            loading='eager'
+            width='1200'
+            height='1600'
+          >
+        </div>
+        <div class='product-gallery-item'>
+          <img
+            src='{{ pdp_img_src_sec | strip }}'
+            alt='{{ product.title | escape }} - {{ 'products.product.image_detail' | t }}'
+            loading='lazy'
+            width='1200'
+            height='1600'
+          >
+        </div>
+      {%- endif -%}
+    </div>
+
+    <!-- Right: Sticky Product Purchase Details -->
+    <div class='product-purchase-info'>
+      <p class='product-info-vendor'>
+        {%- if product.vendor != blank -%}
+          {{ product.vendor }}
+        {%- else -%}
+          {{ 'products.product.vendor' | t }}
+        {%- endif -%}
+      </p>
+      <h1 class='product-info-title'>{{ product.title }}</h1>
+
+      {% render 'price', product: product %}
+
+      <div class='product-short-description'>
+        {%- if product.description != blank -%}
+          {{ product.description }}
+        {%- else -%}
+          {{ 'products.product.default_description' | t }}
+        {%- endif -%}
+      </div>
+
+      <!-- Native Shopify Product Form -->
+      {% form 'product', product, id: 'ProductForm', class: 'product-form' %}
+        <!-- Hidden variant ID input for standard submission -->
+        <input type='hidden' name='id' value='{{ current_variant.id }}' id='SelectedVariantId'>
+
+        {%- unless product.has_only_default_variant -%}
+          {%- for option in product.options_with_values -%}
+            <div class='variant-selector-group'>
+              <div class='variant-selector-label'>
+                <span>
+                  {{- option.name }}:
+                  <strong data-selected-option-value>{{ option.selected_value }}</strong></span
+                >
+                {%- if option.name == 'Beden' or option.name == 'Size' -%}
+                  <button
+                    type='button'
+                    style='text-decoration: underline; font-size: 0.75rem; color: var(--color-muted);'
+                    onclick="alert('{{ 'products.product.size_guide_message' | t | escape }}')"
+                  >
+                    {{ 'products.product.size_guide' | t }}
+                  </button>
+                {%- endif -%}
+              </div>
+
+              <div class='size-options-grid' role='radiogroup' aria-label='{{ option.name }}'>
+                {%- for value in option.values -%}
+                  <label class='size-option-label'>
+                    <input
+                      type='radio'
+                      name='options[{{ option.name | escape }}]'
+                      value='{{ value | escape }}'
+                      class='size-option-input'
+                      data-option-position='{{ option.position }}'
+                      {% if option.selected_value == value %}
+                        checked
+                      {% endif %}
+                    >
+                    <span class='size-option-pill'>
+                      {{ value }}
+                    </span>
+                  </label>
+                {%- endfor -%}
+              </div>
+            </div>
+          {%- endfor -%}
+        {%- endunless -%}
+
+        <!-- Quantity & Add To Cart Button -->
+        <div class='purchase-action-row'>
+          <div class='quantity-control'>
+            <button
+              type='button'
+              class='quantity-btn'
+              data-quantity-minus
+              aria-label='{{ 'products.product.quantity_decrease' | t }}'
+            >
+              -
+            </button>
+            <input
+              type='number'
+              id='Quantity'
+              name='quantity'
+              class='quantity-input'
+              min='1'
+              value='1'
+              aria-label='{{ 'products.product.quantity' | t }}'
+            >
+            <button
+              type='button'
+              class='quantity-btn'
+              data-quantity-plus
+              aria-label='{{ 'products.product.quantity_increase' | t }}'
+            >
+              +
+            </button>
+          </div>
+
+          <button
+            type='submit'
+            name='add'
+            class='add-to-cart-btn'
+            id='AddToCartBtn'
+            data-adding-text='{{ 'products.product.adding' | t | escape }}'
+            {% unless current_variant.available %}
+              disabled
+            {% endunless %}
+          >
+            <span id='AddToCartText'>
+              {%- if current_variant.available -%}
+                {{ 'products.product.add_to_cart' | t }} &mdash; {{ current_variant.price | money }}
+              {%- else -%}
+                {{ 'products.product.sold_out' | t }}
+              {%- endif -%}
+            </span>
+          </button>
+        </div>
+      {% endform %}
+
+      <!-- Rich Accordion Info Tabs -->
+      <div class='product-accordions'>
+        <details class='product-accordion-item' open>
+          <summary class='product-accordion-summary'>
+            <span>{{ 'products.product.details' | t }}</span>
+            {% render 'icon-arrow' %}
+          </summary>
+          <div class='product-accordion-content'>
+            <p>{{ 'products.product.genuine_leather' | t }}</p>
+            <p>{{ 'products.product.craft_details' | t }}</p>
+            <p>{{ 'products.product.made_in_istanbul' | t }}</p>
+          </div>
+        </details>
+
+        <details class='product-accordion-item'>
+          <summary class='product-accordion-summary'>
+            <span>{{ 'products.product.care' | t }}</span>
+            {% render 'icon-arrow' %}
+          </summary>
+          <div class='product-accordion-content'>
+            <p>{{ 'products.product.care_sunlight' | t }}</p>
+            <p>{{ 'products.product.care_cleaning' | t }}</p>
+          </div>
+        </details>
+
+        <details class='product-accordion-item'>
+          <summary class='product-accordion-summary'>
+            <span>{{ 'products.product.delivery_returns' | t }}</span>
+            {% render 'icon-arrow' %}
+          </summary>
+          <div class='product-accordion-content'>
+            <p>{{ 'products.product.delivery_time' | t }}</p>
+            <p>{{ 'products.product.returns_period' | t }}</p>
+          </div>
+        </details>
+      </div>
+    </div>
+  </div>
+</section>
+
+{% schema %}
+  {
+    "name": "Main product",
+    "settings": [],
+    "presets": [
+      {
+        "name": "Main product"
+      }
+    ]
+  }
+{% endschema %}
