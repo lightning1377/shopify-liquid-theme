@@ -1,0 +1,363 @@
+<header
+  class='site-header{% if template.name == 'index' %} site-header--gateway{% endif %}'
+  data-header
+>
+  {%- if template.name == 'index' -%}
+    <!-- Gateway Minimalist Brand Header -->
+    <div class='header-gateway-row page-width'>
+      <a
+        class='brand-logo'
+        href='{{ routes.root_url }}'
+        aria-label='{{ shop.name | default: 'KAVRA' }}'
+      >
+        {%- if section.settings.logo != blank -%}
+          {{
+            section.settings.logo
+            | image_url: width: 300
+            | image_tag: loading: 'eager', alt: shop.name
+          }}
+        {%- else -%}
+          <img
+            src='{{ 'logo.png' | asset_url }}'
+            alt=''
+            width='34'
+            height='34'
+            class='brand-logo-icon'
+            loading='eager'
+          >
+          <span class='brand-logo-text'>{{ section.settings.brand_text | default: 'KAVRA' }}</span>
+        {%- endif -%}
+      </a>
+      {% render 'language-selector', selector_id: 'LanguageSelectorGateway' %}
+    </div>
+  {%- else -%}
+    {%- assign is_kadin = false -%}
+    {%- if collection.handle contains 'kadin' -%}
+      {%- assign is_kadin = true -%}
+    {%- endif -%}
+
+    {%- capture kadin_nav_url -%}{% render 'audience-collection-url', gender: 'kadin' %}{%- endcapture -%}
+    {%- capture erkek_nav_url -%}{% render 'audience-collection-url', gender: 'erkek' %}{%- endcapture -%}
+    {%- assign kadin_nav_url = kadin_nav_url | strip -%}
+    {%- assign erkek_nav_url = erkek_nav_url | strip -%}
+    {%- assign active_audience_url = erkek_nav_url -%}
+    {%- if is_kadin -%}
+      {%- assign active_audience_url = kadin_nav_url -%}
+    {%- endif -%}
+
+    <!-- Tier 1: Utility & Audience Bar -->
+    <div class='header-utility-row page-width'>
+      <!-- Audience Switcher -->
+      <nav class='audience-switcher' aria-label='{{ 'general.navigation.audience' | t }}'>
+        <a
+          class='{% if is_kadin %}is-active{% endif %}'
+          href='{{ kadin_nav_url }}'
+          data-gender-switch='kadin'
+        >
+          {{- 'general.navigation.women' | t -}}
+        </a>
+        <a
+          class='{% unless is_kadin %}is-active{% endunless %}'
+          href='{{ erkek_nav_url }}'
+          data-gender-switch='erkek'
+        >
+          {{- 'general.navigation.men' | t -}}
+        </a>
+        {%- if section.settings.show_sustainability -%}
+          <a class='sustainability-link' href='{{ routes.root_url }}pages/surdurulebilirlik'>
+            {% render 'icon-leaf' %}
+            <span>{{ 'general.navigation.sustainability' | t }}</span>
+          </a>
+        {%- endif -%}
+      </nav>
+
+      <!-- Brand Logo -->
+      <div class='brand-logo-wrap'>
+        <a
+          class='brand-logo'
+          href='{{ routes.root_url }}?gateway=1'
+          aria-label='{{ shop.name | default: 'KAVRA' }}'
+        >
+          {%- if section.settings.logo != blank -%}
+            {{
+              section.settings.logo
+              | image_url: width: 300
+              | image_tag: loading: 'eager', alt: shop.name
+            }}
+          {%- else -%}
+            <img
+              src='{{ 'logo.png' | asset_url }}'
+              alt=''
+              width='30'
+              height='30'
+              class='brand-logo-icon'
+              loading='eager'
+            >
+            <span class='brand-logo-text'>
+              {{- section.settings.brand_text | default: 'KAVRA' -}}
+            </span>
+          {%- endif -%}
+        </a>
+      </div>
+
+      <!-- Header Actions (Account, Wishlist, Cart, Lang) -->
+      <div class='header-actions'>
+        <a
+          class='header-action-item'
+          href='{{ routes.account_url }}'
+          aria-label='{{ 'general.navigation.account' | t }}'
+        >
+          {% render 'icon-account' %}
+          <span>{{ 'general.navigation.account' | t }}</span>
+        </a>
+
+        <button
+          class='header-action-item'
+          type='button'
+          aria-label='{{ 'general.navigation.favorites' | t }}'
+          data-wishlist-header
+        >
+          {% render 'icon-heart' %}
+          <span>{{ 'general.navigation.wishlist' | t }}</span>
+        </button>
+
+        <a
+          class='header-action-item'
+          href='{{ routes.cart_url }}'
+          aria-label='{{ 'general.navigation.cart' | t }}'
+        >
+          {% render 'icon-cart' %}
+          <span>{{ 'general.navigation.cart' | t }}</span>
+          <span class='cart-count' data-cart-count>{{ cart.item_count }}</span>
+        </a>
+
+        {% render 'language-selector', selector_id: 'LanguageSelectorDesktop' %}
+
+        <!-- Mobile Hamburger Button -->
+        <button
+          class='menu-toggle-btn'
+          type='button'
+          aria-expanded='false'
+          aria-controls='MobileDrawer'
+          aria-label='{{ 'general.accessibility.open_menu' | t }}'
+          data-mobile-menu-toggle
+        >
+          <svg
+            width='24'
+            height='24'
+            viewBox='0 0 24 24'
+            fill='none'
+            stroke='currentColor'
+            stroke-width='2'
+            stroke-linecap='round'
+          >
+            <line x1="3" y1="12" x2="21" y2="12"></line>
+            <line x1="3" y1="6" x2="21" y2="6"></line>
+            <line x1="3" y1="18" x2="21" y2="18"></line>
+          </svg>
+        </button>
+      </div>
+    </div>
+
+    <!-- Tier 2: Main Category Navigation & Integrated Search -->
+    <div class='header-nav-row page-width'>
+      <nav class='main-navigation' aria-label='{{ 'general.navigation.main_menu' | t }}'>
+        {%- if section.settings.menu != blank -%}
+          {%- for link in linklists[section.settings.menu].links -%}
+            <a
+              href='{{ link.url }}'
+              {% if link.title contains 'OUTLET'
+                or link.title contains 'SALE'
+                or link.title contains 'İNDİRİM'
+              %}
+                class='nav-sale'
+              {% endif %}
+            >
+              {{ link.title }}
+            </a>
+          {%- endfor -%}
+        {%- else -%}
+          <!-- Default Curated Fashion Navigation -->
+          <a href='{{ active_audience_url }}/yeni-sezon'>{{ 'general.navigation.new' | t }}</a>
+          <a href='{{ active_audience_url }}/ayakkabi'>{{ 'general.navigation.shoes' | t }}</a>
+          <a href='{{ active_audience_url }}/deri-ceket'>
+            {{ 'general.navigation.leather_apparel' | t }}
+          </a>
+          <a href='{{ active_audience_url }}/canta'>{{ 'general.navigation.bags' | t }}</a>
+          <a href='{{ active_audience_url }}/cuzdan'>
+            {{ 'general.navigation.accessories' | t }}
+          </a>
+          <a href='{{ routes.root_url }}pages/markalar'>{{ 'general.navigation.brands' | t }}</a>
+          <a class='nav-sale' href='{{ active_audience_url }}/sepette-indirimli'>
+            {{ 'general.navigation.outlet' | t }}
+          </a>
+          <a href='{{ routes.root_url }}pages/kavra-club'>{{ 'general.navigation.club' | t }}</a>
+        {%- endif -%}
+      </nav>
+
+      <!-- Search Form -->
+      <form class='header-search-form' action='{{ routes.search_url }}' method='get' role='search'>
+        <label class='sr-only' for='HeaderSearchInput'>
+          {{ 'general.search.placeholder' | t }}
+        </label>
+        <input
+          class='header-search-input'
+          id='HeaderSearchInput'
+          type='search'
+          name='q'
+          value='{{ search.terms | escape }}'
+          placeholder='{{ 'general.search.placeholder' | t }}'
+          autocomplete='off'
+        >
+        <button
+          class='header-search-btn'
+          type='submit'
+          aria-label='{{ 'general.search.submit' | t }}'
+        >
+          {% render 'icon-search' %}
+        </button>
+      </form>
+    </div>
+
+    <!-- Mobile Drawer & Backdrop -->
+    <div class='mobile-drawer-backdrop' data-drawer-backdrop></div>
+    <div
+      class='mobile-drawer'
+      id='MobileDrawer'
+      role='dialog'
+      aria-modal='true'
+      aria-label='{{ 'general.navigation.mobile_menu' | t }}'
+    >
+      <div class='mobile-drawer-header'>
+        <a class='brand-logo' href='{{ routes.root_url }}?gateway=1'>
+          {{ section.settings.brand_text | default: 'KAVRA' }}
+        </a>
+        <button
+          type='button'
+          aria-label='{{ 'general.accessibility.close' | t }}'
+          data-mobile-menu-close
+        >
+          {% render 'icon-close' %}
+        </button>
+      </div>
+
+      <!-- Mobile Audience Tabs -->
+      <div class='mobile-audience-tabs'>
+        <a
+          class='{% if is_kadin %}is-active{% endif %}'
+          href='{{ kadin_nav_url }}'
+          data-gender-switch='kadin'
+        >
+          {{- 'general.navigation.women' | t -}}
+        </a>
+        <a
+          class='{% unless is_kadin %}is-active{% endunless %}'
+          href='{{ erkek_nav_url }}'
+          data-gender-switch='erkek'
+        >
+          {{- 'general.navigation.men' | t -}}
+        </a>
+      </div>
+
+      <!-- Mobile Links -->
+      <div class='mobile-nav-links'>
+        <a href='{{ active_audience_url }}/yeni-sezon'>
+          {{ 'general.navigation.new' | t }}
+          {% render 'icon-arrow' %}
+        </a>
+        <a href='{{ active_audience_url }}/ayakkabi'>
+          {{ 'general.navigation.shoes' | t }}
+          {% render 'icon-arrow' %}
+        </a>
+        <a href='{{ active_audience_url }}/deri-ceket'>
+          {{ 'general.navigation.leather_apparel' | t }}
+          {% render 'icon-arrow' %}
+        </a>
+        <a href='{{ active_audience_url }}/canta'>
+          {{ 'general.navigation.bags' | t }}
+          {% render 'icon-arrow' %}
+        </a>
+        <a href='{{ active_audience_url }}/cuzdan'>
+          {{ 'general.navigation.accessories' | t }}
+          {% render 'icon-arrow' %}
+        </a>
+        <a href='{{ routes.root_url }}pages/markalar'>
+          {{ 'general.navigation.brands' | t }}
+          {% render 'icon-arrow' %}
+        </a>
+        <a class='nav-sale' href='{{ active_audience_url }}/sepette-indirimli'>
+          {{- 'general.navigation.outlet' | t }}
+          {% render 'icon-arrow' -%}
+        </a>
+        <a href='{{ routes.root_url }}pages/kavra-club'>
+          {{ 'general.navigation.club' | t }}
+          {% render 'icon-arrow' %}
+        </a>
+      </div>
+
+      <!-- Mobile Search & Footer -->
+      <div class='mobile-drawer-footer'>
+        <form
+          class='header-search-form'
+          style='width: 100%;'
+          action='{{ routes.search_url }}'
+          method='get'
+          role='search'
+        >
+          <input
+            class='header-search-input'
+            type='search'
+            name='q'
+            placeholder='{{ 'general.search.placeholder' | t }}'
+          >
+          <button
+            class='header-search-btn'
+            type='submit'
+            aria-label='{{ 'general.search.submit' | t }}'
+          >
+            {% render 'icon-search' %}
+          </button>
+        </form>
+        <div style='display: flex; justify-content: space-between; align-items: center; padding-top: 0.5rem; font-size: 0.8125rem;'>
+          <a href='{{ routes.account_url }}'>{{ 'general.navigation.account' | t }}</a>
+          {% render 'language-selector', selector_id: 'LanguageSelectorMobile' %}
+        </div>
+      </div>
+    </div>
+  {%- endif -%}
+</header>
+
+{% schema %}
+  {
+    "name": "Header",
+    "settings": [
+      {
+        "type": "text",
+        "id": "brand_text",
+        "label": "Brand name",
+        "default": "KAVRA"
+      },
+      {
+        "type": "image_picker",
+        "id": "logo",
+        "label": "Custom logo image"
+      },
+      {
+        "type": "link_list",
+        "id": "menu",
+        "label": "Main menu navigation"
+      },
+      {
+        "type": "checkbox",
+        "id": "show_sustainability",
+        "label": "Show sustainability link",
+        "default": true
+      }
+    ],
+    "presets": [
+      {
+        "name": "Header"
+      }
+    ]
+  }
+{% endschema %}

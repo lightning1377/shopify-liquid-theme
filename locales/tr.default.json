@@ -1,0 +1,246 @@
+{
+  "general": {
+    "search": {
+      "placeholder": "Ürün, kategori veya renk ara",
+      "submit": "Ara"
+    },
+    "accessibility": {
+      "skip_to_content": "İçeriğe geç",
+      "close": "Kapat",
+      "open_menu": "Menüyü aç",
+      "social_media": "Sosyal Medya"
+    },
+    "language": {
+      "label": "Dil seçin"
+    },
+    "navigation": {
+      "women": "KADIN",
+      "men": "ERKEK",
+      "audience": "Koleksiyon seçimi",
+      "home": "Ana Sayfa",
+      "breadcrumb": "Sayfa yolu",
+      "sustainability": "Sürdürülebilirlik",
+      "main_menu": "Ana Menü",
+      "new": "YENİ",
+      "shoes": "AYAKKABI",
+      "leather_apparel": "DERİ GİYİM",
+      "bags": "ÇANTA",
+      "accessories": "AKSESUAR",
+      "brands": "MARKALAR",
+      "outlet": "OUTLET",
+      "club": "KAVRA CLUB",
+      "account": "Hesabım",
+      "wishlist": "Favoriler",
+      "favorites": "Favorilerim",
+      "cart": "Sepet",
+      "mobile_menu": "Mobil Gezinme"
+    },
+    "pagination": {
+      "page": "Sayfa"
+    }
+  },
+  "products": {
+    "product": {
+      "add_to_cart": "Sepete Ekle",
+      "sold_out": "Tükendi",
+      "on_sale": "İndirim",
+      "quantity": "Adet",
+      "price": "Fiyat",
+      "adding": "Ekleniyor…",
+      "starting_at": "başlayan",
+      "default_description": "Özenle seçilmiş hakiki deri, usta ellerde form kazandı. Zamanla karakter kazanan patina dokusu ve dayanıklı iç astarıyla uzun yıllar gardırobunuzun vazgeçilmez bir parçası olması için tasarlandı.",
+      "discount_in_cart": "Sepette İndirimli",
+      "add_to_favorites": "Favorilere Ekle",
+      "quick_view": "İncele",
+      "quantity_decrease": "Adedi azalt",
+      "quantity_increase": "Adedi artır",
+      "size_guide": "Beden Tablosu",
+      "size_guide_message": "Standart kalıptır, günlük ayakkabı/ceket numaranızı tercih edebilirsiniz.",
+      "details": "Ürün Detayları ve Özellikleri",
+      "genuine_leather": "%100 Doğal ve nefes alabilen hakiki deri.",
+      "craft_details": "Zarif dikiş detayları, paslanmaz metal aksamlar ve ergonomik kalıp.",
+      "made_in_istanbul": "İstanbul atölyelerimizde geleneksel zanaat yöntemleriyle üretilmiştir.",
+      "care": "Deri Bakım Önerileri",
+      "care_sunlight": "Doğrudan güneş ışığı ve yoğun ısı kaynaklarından uzak tutunuz.",
+      "care_cleaning": "Nemli yumuşak bir bez ve renksiz deri bakım kremleriyle belirli aralıklarla bakım yapmanız önerilir.",
+      "delivery_returns": "Teslimat & İade Koşulları",
+      "delivery_time": "Tüm siparişler 1-3 iş günü içerisinde özenle paketlenip kargoya teslim edilir.",
+      "returns_period": "14 gün içerisinde anlaşmalı kargolarımızla ücretsiz iade ve değişim imkânı.",
+      "image_detail": "Detay Görünüm",
+      "vendor": "KAVRA ATÖLYE"
+    }
+  },
+  "sections": {
+    "announcement": {
+      "label": "Duyuru",
+      "default_text": "Yeni Sezon: Zamansız deri parçalar için %10 hoş geldin indirimi — Kod: KAVRA10"
+    },
+    "cart": {
+      "title": "Sepetim",
+      "empty": "Sepetiniz henüz boş"
+    },
+    "collection": {
+      "product_count": "{{ count }} ürün listeleniyor",
+      "filter": "Filtrele",
+      "sort": "Sırala:",
+      "sort_featured": "Öne Çıkanlar",
+      "sort_best_selling": "Çok Satanlar",
+      "sort_newest": "En Yeniler",
+      "sort_price_ascending": "Fiyat: Düşükten Yükseğe",
+      "sort_price_descending": "Fiyat: Yüksekten Düşüğe",
+      "filters": "Filtreler",
+      "category": "Kategori",
+      "size": "Beden",
+      "clear": "Temizle",
+      "apply": "Uygula",
+      "empty_title": "Bu koleksiyonda henüz ürün bulunmuyor.",
+      "empty_description": "Farklı filtreler deneyebilir veya tüm ürünlerimize göz atabilirsiniz.",
+      "browse_all": "Tüm Koleksiyonu Keşfet",
+      "pages": "Sayfalar",
+      "fallback_leather_jacket": "Deri Ceket",
+      "fallback_loafer_casual": "Loafer & Casual",
+      "fallback_sneaker": "Sneaker",
+      "fallback_leather_bag": "Deri Çanta"
+    },
+    "newsletter": {
+      "title": "Bültenimize Abone Ol",
+      "subtitle": "Bültenimize abone olarak en son koleksiyonlardan ve özel fırsatlardan ilk sen haberdar ol.",
+      "email": "E-posta adresiniz",
+      "email_placeholder": "E-posta adresinizi girin",
+      "subscribe": "Abone Ol",
+      "success": "Tebrikler! Bültenimize başarıyla kaydoldunuz.",
+      "consent": "Kişisel verilerimin işlenmesine ve e-bülten üyeliği koşullarına onay veriyorum."
+    },
+    "trust_badges": {
+      "label": "Hizmet Avantajlarımız",
+      "free_shipping": "Ücretsiz Kargo",
+      "free_shipping_description": "1.000 TL ve üzeri tüm siparişlerde ücretsiz kargo",
+      "returns": "İade Garantisi",
+      "returns_description": "14 gün içerisinde koşulsuz ve kolay iade imkanı",
+      "pickup": "Mağazadan Teslim Al",
+      "pickup_description": "Mağazalarımızdan ücretsiz ve hızlı teslimat",
+      "customer_service": "Müşteri Hizmetleri",
+      "customer_service_description": "Hafta içi 09:00 - 18:00: 0 (850) 288 4 288",
+      "whatsapp": "WhatsApp Destek",
+      "whatsapp_description": "Anında sorularınız ve sipariş takibi için bize ulaşın"
+    },
+    "footer": {
+      "brand_description": "1984’ten beri zamansız deri zanaatini modern şehir hayatının estetiğiyle buluşturan özgün tasarımlar.",
+      "corporate": "Kurumsal",
+      "help": "Yardım & Destek",
+      "collections": "Koleksiyonlar",
+      "about": "Hakkımızda",
+      "sustainability": "Sürdürülebilirlik",
+      "stores": "Mağazalarımız",
+      "careers": "Kariyer",
+      "order_tracking": "Sipariş Sorgulama",
+      "shipping": "Kargo ve Teslimat",
+      "returns": "İade ve Değişim",
+      "faq": "Sıkça Sorulan Sorular",
+      "size_guide": "Beden Tablosu",
+      "contact": "İletişim",
+      "mens_leather_jackets": "Erkek Deri Ceket",
+      "mens_shoes": "Erkek Ayakkabı & Sneaker",
+      "leather_bags": "Deri Çanta & D-Pack",
+      "wallets": "Cüzdan & Kartlık",
+      "outlet": "Fırsat Ürünleri (Outlet)",
+      "copyright": "Tüm hakları saklıdır.",
+      "legal": "Sözleşmeler ve Kurallar",
+      "privacy": "Veri Gizliliği",
+      "privacy_notice": "KVKK Aydınlatma",
+      "location": "İstanbul · Türkiye"
+    },
+    "featured": {
+      "view_all": "Tümünü Gör"
+    },
+    "not_developed": {
+      "badge": "KAVRA ATÖLYE · GELİŞTİRME AŞAMASINDA",
+      "default_title": "Sayfa Henüz Geliştirilme Aşamasında",
+      "default_description": "Sizlere kusursuz bir alışveriş ve marka deneyimi sunmak için bu bölümü özenle hazırlıyoruz. Çok yakında hizmetinizde olacak.",
+      "continue_shopping": "Alışverişe Devam Et",
+      "browse_men": "Erkek Koleksiyonu",
+      "browse_women": "Kadın Koleksiyonu",
+      "browse_all": "Tüm Koleksiyon",
+      "support_note": "Acil bir sorunuz veya sipariş talebiniz varsa müşteri destek ekibimiz size yardımcı olmaktan mutluluk duyar.",
+      "support_whatsapp": "WhatsApp ile İletişime Geç",
+      "support_phone": "Müşteri Hizmetlerini Ara",
+      "titles": {
+        "about_us": "Hakkımızda",
+        "order_tracking": "Sipariş Sorgulama & Takip",
+        "sustainability": "Sürdürülebilirlik & Zanaat",
+        "stores": "Mağazalarımız",
+        "careers": "Kariyer Olanakları",
+        "shipping": "Kargo ve Teslimat Süreçleri",
+        "returns": "İade ve Değişim Koşulları",
+        "faq": "Sıkça Sorulan Sorular",
+        "size_guide": "Beden ve Kalıp Rehberi",
+        "contact": "İletişim & Müşteri Deneyimi",
+        "club": "KAVRA Club Ayrıcalıkları",
+        "brands": "İş Birliği Yaptığımız Markalar",
+        "outlet": "Outlet & Özel Fırsatlar"
+      }
+    }
+  },
+  "content": {
+    "gateway": {
+      "women_title": "KADIN",
+      "men_title": "ERKEK",
+      "season": "Yeni Sezon / 26—27",
+      "men_subtitle": "Dokusu Güçlü, Etkisi Zamansız",
+      "explore": "Koleksiyonu Keşfet",
+      "gateway_label": "Koleksiyon Giriş Kapısı",
+      "collection": "Koleksiyonu"
+    },
+    "collection": {
+      "men_eyebrow": "KAVRA / ERKEK",
+      "women_eyebrow": "KAVRA / KADIN",
+      "season": "Yeni Sezon / 26—27",
+      "fall_winter": "FALL WINTER 26—27",
+      "men_banner": "Dokusu güçlü, etkisi zamansız.",
+      "women_banner": "Zarif silüetler, kusursuz deri zanaatı.",
+      "explore": "Koleksiyonu İncele",
+      "quick_title": "Yeni Sezona İlk Bakış",
+      "view_all": "Tümünü Gör",
+      "shoes": "AYAKKABI",
+      "bags": "ÇANTA",
+      "jacket": "DERİ CEKET",
+      "women_bags": "ÇANTA & CÜZDAN",
+      "women_shoes": "AYAKKABI & ÇİZME",
+      "women_jackets": "DERİ CEKET & KABAN",
+      "women_collection_title": "Yeni Sezon Kadın Koleksiyonu"
+    },
+    "campaign": {
+      "badge": "ÖZEL KAMPANYA",
+      "jackets": "DERİ CEKETLERDE",
+      "first_item": "1. ÜRÜNE %20",
+      "second_item": "+ 2. ÜRÜNE %40",
+      "description": "Giy süetini, çık sokağa. Dokusu güçlü, etkisi zamansız tasarımlar sezonun öne çıkan parçaları arasında.",
+      "women_badge": "KADIN ÖZEL KOLEKSİYON",
+      "women_bags": "İTALYAN DERİ ÇANTALARDA",
+      "women_style": "ZAMANSIZ ŞIKLIK",
+      "women_discount": "SEÇİLİ ÜRÜNLERDE %30",
+      "women_description": "Yumuşak dokusu ve zarafetiyle stilinizi tamamlayacak el işçiliği deri parçalar.",
+      "explore": "Koleksiyonu İncele"
+    },
+    "featured": {
+      "eyebrow": "Seçtiklerimiz",
+      "title": "Birlikte İyi Gider",
+      "recommendations_eyebrow": "Kombini Tamamla",
+      "product": "KAVRA Klasik Koleksiyon Parçası"
+    },
+    "preview": {
+      "leather_jacket": "Deri Ceket Görseli",
+      "product_1": "Asensio Erkek Yeşil Süet Ceket",
+      "product_2": "Ronaldo Erkek Taba Fermuarlı Ceket",
+      "product_3": "Matias Erkek Kahverengi Süet Ceket"
+    },
+    "footer": {
+      "club": "KAVRA Club"
+    }
+  },
+  "forms": {
+    "errors": {
+      "email": "Lütfen geçerli bir e-posta adresi girin."
+    }
+  }
+}

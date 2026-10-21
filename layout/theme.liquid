@@ -1,0 +1,94 @@
+<!doctype html>
+<html class='no-js' lang='{{ request.locale.iso_code }}'>
+  <head>
+    <meta charset='utf-8'>
+    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+    <meta name='viewport' content='width=device-width, initial-scale=1.0, maximum-scale=5.0'>
+    <link rel='canonical' href='{{ canonical_url }}'>
+
+    {%- if settings.favicon != blank -%}
+      <link
+        rel='icon'
+        type='image/png'
+        href='{{ settings.favicon | image_url: width: 32, height: 32 }}'
+      >
+    {%- else -%}
+      <link rel='icon' type='image/png' href='{{ 'favicon.png' | asset_url }}'>
+    {%- endif -%}
+
+    <title>
+      {{ page_title }}
+      {%- if current_tags %} &ndash; tagged "{{ current_tags | join: ', ' }}"{% endif -%}
+      {%- if current_page != 1 %}
+        &ndash; {{ 'general.pagination.page' | t }}
+        {{ current_page }}
+      {% endif -%}
+      {%- unless page_title contains shop.name %} &ndash; {{ shop.name }}{% endunless -%}
+    </title>
+
+    {%- if page_description -%}
+      <meta name='description' content='{{ page_description | escape }}'>
+    {%- endif -%}
+
+    {%- if template.name == 'index' -%}
+      {%- capture redirect_erkek -%}{% render 'audience-collection-url', gender: 'erkek' %}{%- endcapture -%}
+      {%- capture redirect_kadin -%}{% render 'audience-collection-url', gender: 'kadin' %}{%- endcapture -%}
+      {%- assign redirect_erkek = redirect_erkek | strip -%}
+      {%- assign redirect_kadin = redirect_kadin | strip -%}
+
+      <script>
+        (function () {
+          try {
+            var params = new URLSearchParams(window.location.search);
+            if (params.get('gateway') === '1' || params.get('bypass') === '1') {
+              return;
+            }
+            var match = document.cookie.match(/(?:^|;\s*)kavra_gender_preference=([^;]+)/);
+            if (match && match[1]) {
+              var pref = decodeURIComponent(match[1]).toLowerCase().trim();
+              if (pref === 'erkek') {
+                window.location.replace('{{ redirect_erkek }}');
+              } else if (pref === 'kadin') {
+                window.location.replace('{{ redirect_kadin }}');
+              }
+            }
+          } catch (e) {}
+        })();
+      </script>
+    {%- endif -%}
+
+    <!-- Local Fonts: Lexend & Playfair Display -->
+    {{
+      'lexend-roman-latin.woff2'
+      | asset_url
+      | preload_tag: as: 'font', type: 'font/woff2', crossorigin: 'anonymous'
+    }}
+    {{
+      'lexend-roman-latin-ext.woff2'
+      | asset_url
+      | preload_tag: as: 'font', type: 'font/woff2', crossorigin: 'anonymous'
+    }}
+    {% render 'font-face' %}
+
+    {{ content_for_header }}
+
+    <!-- Theme Base Stylesheet -->
+    {{ 'base.css' | asset_url | stylesheet_tag }}
+  </head>
+  <body class='template-{{ template.name | default: 'index' }}'>
+    <a class='skip-link' href='#MainContent'>
+      {{ 'general.accessibility.skip_to_content' | t }}
+    </a>
+
+    {% sections 'header-group' %}
+
+    <main id='MainContent' role='main' tabindex='-1'>
+      {{ content_for_layout }}
+    </main>
+
+    {% sections 'footer-group' %}
+
+    <!-- Theme JavaScript -->
+    <script src='{{ 'theme.js' | asset_url }}' defer='defer'></script>
+  </body>
+</html>

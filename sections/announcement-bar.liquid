@@ -1,0 +1,54 @@
+{%- if section.settings.show_announcement -%}
+  <div class='announcement-bar' role='region' aria-label='{{ 'sections.announcement.label' | t }}'>
+    <div class='page-width'>
+      {%- if section.settings.link != blank -%}
+        <a href='{{ section.settings.link }}'>
+          <p>
+            {%- if section.settings.text != blank -%}
+              {{ section.settings.text | escape }}
+            {%- else -%}
+              {{ 'sections.announcement.default_text' | t }}
+            {%- endif -%}
+          </p>
+        </a>
+      {%- else -%}
+        <p>
+          {%- if section.settings.text != blank -%}
+            {{ section.settings.text | escape }}
+          {%- else -%}
+            {{ 'sections.announcement.default_text' | t }}
+          {%- endif -%}
+        </p>
+      {%- endif -%}
+    </div>
+  </div>
+{%- endif -%}
+
+{% schema %}
+  {
+    "name": "Announcement bar",
+    "settings": [
+      {
+        "type": "checkbox",
+        "id": "show_announcement",
+        "label": "Show announcement bar",
+        "default": true
+      },
+      {
+        "type": "text",
+        "id": "text",
+        "label": "Announcement text"
+      },
+      {
+        "type": "url",
+        "id": "link",
+        "label": "Announcement link"
+      }
+    ],
+    "presets": [
+      {
+        "name": "Announcement bar"
+      }
+    ]
+  }
+{% endschema %}

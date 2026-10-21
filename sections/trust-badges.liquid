@@ -1,0 +1,175 @@
+{%- unless template.name == 'index' -%}
+  <section class='trust-badges-section' aria-label='{{ 'sections.trust_badges.label' | t }}'>
+    <div class='page-width'>
+      <div class='trust-badges-grid'>
+        <!-- Badge 1: Free Shipping -->
+        <div class='trust-badge-card'>
+          <div class='trust-badge-icon'>
+            {% render 'icon-truck' %}
+          </div>
+          <h3 class='trust-badge-title'>
+            {%- if section.settings.badge1_title != blank -%}
+              {{ section.settings.badge1_title }}
+            {%- else -%}
+              {{ 'sections.trust_badges.free_shipping' | t }}
+            {%- endif -%}
+          </h3>
+          <p class='trust-badge-desc'>
+            {%- if section.settings.badge1_desc != blank -%}
+              {{ section.settings.badge1_desc }}
+            {%- else -%}
+              {{ 'sections.trust_badges.free_shipping_description' | t }}
+            {%- endif -%}
+          </p>
+        </div>
+
+        <!-- Badge 2: Easy Return -->
+        <div class='trust-badge-card'>
+          <div class='trust-badge-icon'>
+            {% render 'icon-return' %}
+          </div>
+          <h3 class='trust-badge-title'>
+            {%- if section.settings.badge2_title != blank -%}
+              {{ section.settings.badge2_title }}
+            {%- else -%}
+              {{ 'sections.trust_badges.returns' | t }}
+            {%- endif -%}
+          </h3>
+          <p class='trust-badge-desc'>
+            {%- if section.settings.badge2_desc != blank -%}
+              {{ section.settings.badge2_desc }}
+            {%- else -%}
+              {{ 'sections.trust_badges.returns_description' | t }}
+            {%- endif -%}
+          </p>
+        </div>
+
+        <!-- Badge 3: Store Pickup -->
+        <div class='trust-badge-card'>
+          <div class='trust-badge-icon'>
+            {% render 'icon-store' %}
+          </div>
+          <h3 class='trust-badge-title'>
+            {%- if section.settings.badge3_title != blank -%}
+              {{ section.settings.badge3_title }}
+            {%- else -%}
+              {{ 'sections.trust_badges.pickup' | t }}
+            {%- endif -%}
+          </h3>
+          <p class='trust-badge-desc'>
+            {%- if section.settings.badge3_desc != blank -%}
+              {{ section.settings.badge3_desc }}
+            {%- else -%}
+              {{ 'sections.trust_badges.pickup_description' | t }}
+            {%- endif -%}
+          </p>
+        </div>
+
+        <!-- Badge 4: Customer Service -->
+        <div class='trust-badge-card'>
+          <div class='trust-badge-icon'>
+            {% render 'icon-phone' %}
+          </div>
+          <h3 class='trust-badge-title'>
+            {%- if section.settings.badge4_title != blank -%}
+              {{ section.settings.badge4_title }}
+            {%- else -%}
+              {{ 'sections.trust_badges.customer_service' | t }}
+            {%- endif -%}
+          </h3>
+          <p class='trust-badge-desc'>
+            {%- if section.settings.badge4_desc != blank -%}
+              {{ section.settings.badge4_desc }}
+            {%- else -%}
+              {{ 'sections.trust_badges.customer_service_description' | t }}
+            {%- endif -%}
+          </p>
+        </div>
+
+        <!-- Badge 5: WhatsApp Support -->
+        <div class='trust-badge-card'>
+          <div class='trust-badge-icon'>
+            {% render 'icon-whatsapp' %}
+          </div>
+          <h3 class='trust-badge-title'>
+            {%- if section.settings.badge5_title != blank -%}
+              {{ section.settings.badge5_title }}
+            {%- else -%}
+              {{ 'sections.trust_badges.whatsapp' | t }}
+            {%- endif -%}
+          </h3>
+          <p class='trust-badge-desc'>
+            {%- if section.settings.badge5_desc != blank -%}
+              {{ section.settings.badge5_desc }}
+            {%- else -%}
+              {{ 'sections.trust_badges.whatsapp_description' | t }}
+            {%- endif -%}
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+{%- endunless -%}
+
+{% schema %}
+  {
+    "name": "Trust badges",
+    "settings": [
+      {
+        "type": "text",
+        "id": "badge1_title",
+        "label": "Badge 1 Title"
+      },
+      {
+        "type": "text",
+        "id": "badge1_desc",
+        "label": "Badge 1 Description"
+      },
+      {
+        "type": "text",
+        "id": "badge2_title",
+        "label": "Badge 2 Title"
+      },
+      {
+        "type": "text",
+        "id": "badge2_desc",
+        "label": "Badge 2 Description"
+      },
+      {
+        "type": "text",
+        "id": "badge3_title",
+        "label": "Badge 3 Title"
+      },
+      {
+        "type": "text",
+        "id": "badge3_desc",
+        "label": "Badge 3 Description"
+      },
+      {
+        "type": "text",
+        "id": "badge4_title",
+        "label": "Badge 4 Title"
+      },
+      {
+        "type": "text",
+        "id": "badge4_desc",
+        "label": "Badge 4 Description"
+      },
+      {
+        "type": "text",
+        "id": "badge5_title",
+        "label": "Badge 5 Title"
+      },
+      {
+        "type": "text",
+        "id": "badge5_desc",
+        "label": "Badge 5 Description"
+      }
+    ],
+    "presets": [
+      {
+        "name": "Trust badges"
+      }
+    ]
+  }
+{% endschema %}

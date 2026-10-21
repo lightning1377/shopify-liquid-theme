@@ -1,0 +1,100 @@
+{%- unless template.name == 'index' -%}
+  <section class='newsletter-section' aria-labelledby='NewsletterTitle'>
+    <div class='page-width'>
+      <div class='newsletter-inner'>
+        <div class='newsletter-header'>
+          <h2 id='NewsletterTitle'>
+            {%- if section.settings.title != blank -%}
+              {{ section.settings.title }}
+            {%- else -%}
+              {{ 'sections.newsletter.title' | t }}
+            {%- endif -%}
+          </h2>
+          <p>
+            {%- if section.settings.subtitle != blank -%}
+              {{ section.settings.subtitle }}
+            {%- else -%}
+              {{ 'sections.newsletter.subtitle' | t }}
+            {%- endif -%}
+          </p>
+        </div>
+
+        <div class='newsletter-form-wrap'>
+          {% form 'customer', class: 'newsletter-customer-form' %}
+            <input type='hidden' name='contact[tags]' value='newsletter'>
+
+            <div class='newsletter-form'>
+              <label class='sr-only' for='NewsletterEmail'>
+                {{ 'sections.newsletter.email' | t }}
+              </label>
+              <input
+                id='NewsletterEmail'
+                type='email'
+                name='contact[email]'
+                class='newsletter-input'
+                value='{{ form.email }}'
+                aria-required='true'
+                autocorrect='off'
+                autocapitalize='off'
+                autocomplete='email'
+                placeholder='{{ 'sections.newsletter.email_placeholder' | t }}'
+                required
+              >
+              <button type='submit' class='newsletter-btn'>
+                {%- if section.settings.button_label != blank -%}
+                  {{ section.settings.button_label }}
+                {%- else -%}
+                  {{ 'sections.newsletter.subscribe' | t }}
+                {%- endif -%}
+              </button>
+            </div>
+
+            {%- if form.posted_successfully? -%}
+              <p style='color: #4ade80; font-size: 0.8125rem; margin: 0.5rem 0 0;'>
+                {{ 'sections.newsletter.success' | t }}
+              </p>
+            {%- elsif form.errors -%}
+              <p style='color: #f87171; font-size: 0.8125rem; margin: 0.5rem 0 0;'>
+                {{ form.errors.translated_fields.email | capitalize }}
+                {{ form.errors.messages.email }}
+              </p>
+            {%- endif -%}
+
+            <label class='newsletter-consent' for='NewsletterConsent'>
+              <input type='checkbox' id='NewsletterConsent' required>
+              <span>{{ 'sections.newsletter.consent' | t }}</span>
+            </label>
+          {% endform %}
+        </div>
+      </div>
+    </div>
+  </section>
+{%- endunless -%}
+
+{% schema %}
+  {
+    "name": "Newsletter",
+    "settings": [
+      {
+        "type": "text",
+        "id": "title",
+        "label": "Heading"
+      },
+      {
+        "type": "text",
+        "id": "subtitle",
+        "label": "Subheading"
+      },
+      {
+        "type": "text",
+        "id": "button_label",
+        "label": "Button label"
+      }
+    ],
+    "presets": [
+      {
+        "name": "Newsletter"
+      }
+    ]
+  }
+{% endschema %}

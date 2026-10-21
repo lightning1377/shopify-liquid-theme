@@ -1,0 +1,15 @@
+{
+  "current": {
+    "color_bg": "#fbfbf9",
+    "color_text": "#111111",
+    "color_muted": "#737068",
+    "color_border": "#e5e2da",
+    "color_card_bg": "#f5f3ee",
+    "color_accent": "#c84a2a",
+    "color_promo_green": "#2d7a4f",
+    "social_instagram_link": "https://instagram.com",
+    "social_facebook_link": "https://facebook.com",
+    "social_twitter_link": "https://x.com",
+    "social_youtube_link": "https://youtube.com"
+  }
+}

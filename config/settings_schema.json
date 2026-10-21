@@ -1,0 +1,86 @@
+[
+  {
+    "name": "theme_info",
+    "theme_name": "KAVRA",
+    "theme_version": "1.0.0",
+    "theme_author": "KAVRA Studio",
+    "theme_documentation_url": "https://shopify.dev/docs/storefronts/themes",
+    "theme_support_url": "https://help.shopify.com"
+  },
+  {
+    "name": "Colors",
+    "settings": [
+      {
+        "type": "color",
+        "id": "color_bg",
+        "label": "Background (Paper)",
+        "default": "#fbfbf9"
+      },
+      {
+        "type": "color",
+        "id": "color_text",
+        "label": "Text (Ink)",
+        "default": "#111111"
+      },
+      {
+        "type": "color",
+        "id": "color_muted",
+        "label": "Muted Text",
+        "default": "#737068"
+      },
+      {
+        "type": "color",
+        "id": "color_border",
+        "label": "Border & Lines",
+        "default": "#e5e2da"
+      },
+      {
+        "type": "color",
+        "id": "color_card_bg",
+        "label": "Card Canvas Background",
+        "default": "#f5f3ee"
+      },
+      {
+        "type": "color",
+        "id": "color_accent",
+        "label": "Sale & Accent (Terracotta/Red)",
+        "default": "#c84a2a"
+      },
+      {
+        "type": "color",
+        "id": "color_promo_green",
+        "label": "Promo Badge Green",
+        "default": "#2d7a4f"
+      }
+    ]
+  },
+  {
+    "name": "Social media",
+    "settings": [
+      {
+        "type": "text",
+        "id": "social_instagram_link",
+        "label": "Instagram URL",
+        "default": "https://instagram.com"
+      },
+      {
+        "type": "text",
+        "id": "social_facebook_link",
+        "label": "Facebook URL",
+        "default": "https://facebook.com"
+      },
+      {
+        "type": "text",
+        "id": "social_twitter_link",
+        "label": "X / Twitter URL",
+        "default": "https://x.com"
+      },
+      {
+        "type": "text",
+        "id": "social_youtube_link",
+        "label": "YouTube URL",
+        "default": "https://youtube.com"
+      }
+    ]
+  }
+]

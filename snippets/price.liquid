@@ -1,0 +1,30 @@
+{%- comment -%}
+  Renders a product's price, including compare-at price and discount calculations.
+  Accepts:
+  - product: {Object} Shopify Product Object
+{%- endcomment -%}
+
+{%- assign target = product.selected_or_first_available_variant | default: product -%}
+{%- assign compare_at_price = target.compare_at_price -%}
+{%- assign price = target.price -%}
+{%- assign on_sale = false -%}
+{%- if compare_at_price > price -%}
+  {%- assign on_sale = true -%}
+{%- endif -%}
+
+<div class='price-box{% if on_sale %} price-box--sale{% endif %}'>
+  <span class='price-current'>
+    {%- if product.price_varies and template.name != 'product' -%}
+      {{ 'products.product.starting_at' | t }}
+      {{ price | money }}
+    {%- else -%}
+      {{ price | money }}
+    {%- endif -%}
+  </span>
+
+  {%- if on_sale -%}
+    <span class='price-compare'>
+      {{ compare_at_price | money }}
+    </span>
+  {%- endif -%}
+</div>

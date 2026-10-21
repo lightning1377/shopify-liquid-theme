@@ -1,0 +1,24 @@
+# Dependencies & Build
+node_modules/
+.next/
+dist/
+build/
+.pnpm-store/
+pnpm-lock.yaml
+
+# Assets & Binaries
+assets/*.woff2
+assets/*.woff
+assets/*.ttf
+assets/*.eot
+*.pdf
+*.png
+*.jpg
+*.jpeg
+*.webp
+*.gif
+*.ico
+
+# Version Control
+.git/
+.DS_Store
