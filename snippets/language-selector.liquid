@@ -1,0 +1,31 @@
+{%- liquid
+  assign current_iso = request.locale.iso_code | split: '-' | first | downcase
+-%}
+{% form 'localization', class: 'lang-switch', id: selector_id %}
+  <button
+    type='submit'
+    name='locale_code'
+    value='tr'
+    class='lang-switch-btn{% if current_iso == 'tr' %} active-lang{% endif %}'
+    aria-label='Türkçe'
+    {% if current_iso == 'tr' %}
+      aria-current='true'
+    {% endif %}
+  >
+    TR
+  </button>
+  <span class='lang-switch-sep' aria-hidden='true'>|</span>
+  <button
+    type='submit'
+    name='locale_code'
+    value='en'
+    class='lang-switch-btn{% if current_iso == 'en' %} active-lang{% endif %}'
+    aria-label='English'
+    {% if current_iso == 'en' %}
+      aria-current='true'
+    {% endif %}
+  >
+    EN
+  </button>
+  <input type='hidden' name='return_to' value='{{ request.path }}'>
+{% endform %}

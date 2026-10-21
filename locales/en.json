@@ -1,0 +1,246 @@
+{
+  "general": {
+    "search": {
+      "placeholder": "Search products, categories, or colors",
+      "submit": "Search"
+    },
+    "accessibility": {
+      "skip_to_content": "Skip to content",
+      "close": "Close",
+      "open_menu": "Open menu",
+      "social_media": "Social media"
+    },
+    "language": {
+      "label": "Choose language"
+    },
+    "navigation": {
+      "women": "WOMEN",
+      "men": "MEN",
+      "audience": "Shop by collection",
+      "home": "Home",
+      "breadcrumb": "Breadcrumb",
+      "sustainability": "Sustainability",
+      "main_menu": "Main menu",
+      "new": "NEW",
+      "shoes": "SHOES",
+      "leather_apparel": "LEATHER APPAREL",
+      "bags": "BAGS",
+      "accessories": "ACCESSORIES",
+      "brands": "BRANDS",
+      "outlet": "OUTLET",
+      "club": "KAVRA CLUB",
+      "account": "Account",
+      "wishlist": "Wishlist",
+      "favorites": "Favorites",
+      "cart": "Cart",
+      "mobile_menu": "Mobile navigation"
+    },
+    "pagination": {
+      "page": "Page"
+    }
+  },
+  "products": {
+    "product": {
+      "add_to_cart": "Add to cart",
+      "sold_out": "Sold out",
+      "on_sale": "Sale",
+      "quantity": "Quantity",
+      "price": "Price",
+      "adding": "Adding…",
+      "starting_at": "Starting at",
+      "default_description": "Carefully selected genuine leather, shaped by skilled hands. Designed to become a lasting wardrobe essential, with a patina that develops character over time and a durable lining.",
+      "discount_in_cart": "Discount in cart",
+      "add_to_favorites": "Add to favorites",
+      "quick_view": "View",
+      "quantity_decrease": "Decrease quantity",
+      "quantity_increase": "Increase quantity",
+      "size_guide": "Size guide",
+      "size_guide_message": "This style has a standard fit. We recommend choosing your usual shoe or jacket size.",
+      "details": "Product details and features",
+      "genuine_leather": "100% natural, breathable genuine leather.",
+      "craft_details": "Elegant stitching, rust-resistant metal hardware, and an ergonomic fit.",
+      "made_in_istanbul": "Made in our Istanbul workshops using traditional craftsmanship.",
+      "care": "Leather care",
+      "care_sunlight": "Keep away from direct sunlight and intense heat.",
+      "care_cleaning": "We recommend periodic care with a damp, soft cloth and colorless leather cream.",
+      "delivery_returns": "Delivery and returns",
+      "delivery_time": "All orders are carefully packed and handed to the carrier within 1–3 business days.",
+      "returns_period": "Free returns and exchanges are available within 14 days using our contracted carriers.",
+      "image_detail": "Detail view",
+      "vendor": "KAVRA Studio"
+    }
+  },
+  "sections": {
+    "announcement": {
+      "label": "Announcement",
+      "default_text": "New season: Enjoy 10% off timeless leather pieces — Code: KAVRA10"
+    },
+    "cart": {
+      "title": "My Cart",
+      "empty": "Your cart is currently empty"
+    },
+    "collection": {
+      "product_count": "{{ count }} products",
+      "filter": "Filter",
+      "sort": "Sort:",
+      "sort_featured": "Featured",
+      "sort_best_selling": "Best selling",
+      "sort_newest": "Newest",
+      "sort_price_ascending": "Price: low to high",
+      "sort_price_descending": "Price: high to low",
+      "filters": "Filters",
+      "category": "Category",
+      "size": "Size",
+      "clear": "Clear",
+      "apply": "Apply",
+      "empty_title": "There are no products in this collection yet.",
+      "empty_description": "Try different filters or browse all of our products.",
+      "browse_all": "Explore all products",
+      "pages": "Pages",
+      "fallback_leather_jacket": "Leather jacket",
+      "fallback_loafer_casual": "Loafer & casual",
+      "fallback_sneaker": "Sneaker",
+      "fallback_leather_bag": "Leather bag"
+    },
+    "newsletter": {
+      "title": "Subscribe to our newsletter",
+      "subtitle": "Be the first to hear about our latest collections and exclusive offers.",
+      "email": "Email address",
+      "email_placeholder": "Enter your email address",
+      "subscribe": "Subscribe",
+      "success": "Thank you! You have successfully subscribed to our newsletter.",
+      "consent": "I agree to the processing of my personal data and the terms of newsletter membership."
+    },
+    "trust_badges": {
+      "label": "Our services",
+      "free_shipping": "Free shipping",
+      "free_shipping_description": "Free shipping on all orders over TRY 1,000",
+      "returns": "Easy returns",
+      "returns_description": "Easy, unconditional returns within 14 days",
+      "pickup": "Store pickup",
+      "pickup_description": "Free and fast delivery from our stores",
+      "customer_service": "Customer service",
+      "customer_service_description": "Weekdays 09:00–18:00: +90 (850) 288 4 288",
+      "whatsapp": "WhatsApp support",
+      "whatsapp_description": "Contact us for quick answers and order tracking"
+    },
+    "footer": {
+      "brand_description": "Since 1984, we have brought timeless leather craftsmanship together with the aesthetics of modern city life.",
+      "corporate": "Company",
+      "help": "Help & support",
+      "collections": "Collections",
+      "about": "About us",
+      "sustainability": "Sustainability",
+      "stores": "Our stores",
+      "careers": "Careers",
+      "order_tracking": "Order tracking",
+      "shipping": "Shipping & delivery",
+      "returns": "Returns & exchanges",
+      "faq": "Frequently asked questions",
+      "size_guide": "Size guide",
+      "contact": "Contact",
+      "mens_leather_jackets": "Men's leather jackets",
+      "mens_shoes": "Men's shoes & sneakers",
+      "leather_bags": "Leather bags & D-Pack",
+      "wallets": "Wallets & card holders",
+      "outlet": "Sale items (Outlet)",
+      "copyright": "All rights reserved.",
+      "legal": "Terms & conditions",
+      "privacy": "Privacy",
+      "privacy_notice": "Privacy notice",
+      "location": "Istanbul · Türkiye"
+    },
+    "featured": {
+      "view_all": "View all"
+    },
+    "not_developed": {
+      "badge": "KAVRA ATELIER · UNDER DEVELOPMENT",
+      "default_title": "Page Under Development",
+      "default_description": "We are carefully crafting this section to provide you with a flawless shopping and brand experience. It will be available very soon.",
+      "continue_shopping": "Continue Shopping",
+      "browse_men": "Men's Collection",
+      "browse_women": "Women's Collection",
+      "browse_all": "All Products",
+      "support_note": "If you have an urgent inquiry or order assistance request, our customer support team is happy to assist.",
+      "support_whatsapp": "Contact via WhatsApp",
+      "support_phone": "Call Customer Care",
+      "titles": {
+        "about_us": "About Us",
+        "order_tracking": "Order Tracking & Inquiry",
+        "sustainability": "Sustainability & Craft",
+        "stores": "Our Stores",
+        "careers": "Careers & Opportunities",
+        "shipping": "Shipping & Delivery Info",
+        "returns": "Returns & Exchanges",
+        "faq": "Frequently Asked Questions",
+        "size_guide": "Size & Fit Guide",
+        "contact": "Contact & Customer Experience",
+        "club": "KAVRA Club Privileges",
+        "brands": "Partner Brands",
+        "outlet": "Outlet & Special Offers"
+      }
+    }
+  },
+  "content": {
+    "gateway": {
+      "women_title": "WOMEN",
+      "men_title": "MEN",
+      "season": "New Season / 26—27",
+      "men_subtitle": "Timeless impact, distinctive texture",
+      "explore": "Explore the collection",
+      "gateway_label": "Choose a collection",
+      "collection": "collection"
+    },
+    "collection": {
+      "men_eyebrow": "KAVRA / MEN",
+      "women_eyebrow": "KAVRA / WOMEN",
+      "season": "New Season / 26—27",
+      "fall_winter": "FALL WINTER 26—27",
+      "men_banner": "Distinctive texture, timeless impact.",
+      "women_banner": "Elegant silhouettes, impeccable leather craftsmanship.",
+      "explore": "Explore the collection",
+      "quick_title": "A first look at the new season",
+      "view_all": "View all",
+      "shoes": "SHOES",
+      "bags": "BAGS",
+      "jacket": "LEATHER JACKETS",
+      "women_bags": "BAGS & WALLETS",
+      "women_shoes": "SHOES & BOOTS",
+      "women_jackets": "LEATHER JACKETS & COATS",
+      "women_collection_title": "New Season Women's Collection"
+    },
+    "campaign": {
+      "badge": "SPECIAL OFFER",
+      "jackets": "LEATHER JACKETS",
+      "first_item": "20% OFF 1ST ITEM",
+      "second_item": "+ 40% OFF 2ND ITEM",
+      "description": "Wear your suede and take it to the streets. Distinctive texture and timeless designs make these pieces highlights of the season.",
+      "women_badge": "WOMEN'S EXCLUSIVE COLLECTION",
+      "women_bags": "ITALIAN LEATHER BAGS",
+      "women_style": "TIMELESS ELEGANCE",
+      "women_discount": "30% OFF SELECTED ITEMS",
+      "women_description": "Handcrafted leather pieces that complete your style with a soft texture and timeless elegance.",
+      "explore": "Explore the collection"
+    },
+    "featured": {
+      "eyebrow": "Our picks",
+      "title": "A perfect match",
+      "recommendations_eyebrow": "Complete the look",
+      "product": "KAVRA classic collection piece"
+    },
+    "preview": {
+      "leather_jacket": "Leather jacket image",
+      "product_1": "Asensio men's green suede jacket",
+      "product_2": "Ronaldo men's tan zip-up jacket",
+      "product_3": "Matias men's brown suede jacket"
+    },
+    "footer": {
+      "club": "KAVRA Club"
+    }
+  },
+  "forms": {
+    "errors": {
+      "email": "Please enter a valid email address."
+    }
+  }
+}

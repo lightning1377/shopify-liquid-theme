@@ -1,0 +1,12 @@
+{%- liquid
+  assign localized_language = request.locale.iso_code | split: '-' | first
+  assign resolved_value = value | default: default_text
+-%}
+{%- if localized_language == 'en'
+  and translation_key != blank
+  and resolved_value == default_text
+-%}
+  {{ translation_key | t }}
+{%- else -%}
+  {{ resolved_value }}
+{%- endif -%}
