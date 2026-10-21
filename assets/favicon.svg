@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="512" height="512">
+  <rect width="512" height="512" rx="112" fill="#121212" />
+  <g transform="translate(256, 256)">
+    <!-- Primary Vertical Leatherwork Stem -->
+    <path d="M-130 -160 L-70 -200 L-70 200 L-130 160 Z" fill="#FBFBF9" />
+    <path d="M-55 -170 L-15 -196 L-15 196 L-55 170 Z" fill="#FBFBF9" />
+
+    <!-- Upper Angled Arm & Diamond Intersection -->
+    <path d="M-15 -40 L90 -145 L150 -105 L45 0 Z" fill="#FBFBF9" />
+    <path d="M70 -195 L145 -145 L115 -115 L40 -165 Z" fill="#FBFBF9" />
+
+    <!-- Lower Angled Arm -->
+    <path d="M45 0 L150 105 L90 145 L-15 40 Z" fill="#FBFBF9" />
+    <path d="M145 145 L70 195 L40 165 L115 115 Z" fill="#FBFBF9" />
+
+    <!-- Central Diamond Leather Hide Rhombus -->
+    <path d="M15 -45 L75 -105 L135 -45 L75 15 Z" fill="#C84A2A" />
+    <path d="M75 -75 L105 -45 L75 -15 L45 -45 Z" fill="#121212" />
+  </g>
+</svg>
