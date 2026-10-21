@@ -1,0 +1,23 @@
+{%- comment -%}
+  Renders the resolved collection URL for a gender audience with graceful fallbacks.
+  Accepts:
+  - gender: 'kadin' | 'erkek' (required)
+  - custom_url: string (optional merchant setting override)
+
+  Usage:
+  {% render 'audience-collection-url', gender: 'kadin', custom_url: section.settings.woman_link %}
+{%- endcomment -%}
+{%- liquid
+  if custom_url != blank
+    echo custom_url
+  else
+    assign homepage_handle = gender | append: '-anasayfa'
+    if collections[homepage_handle] != blank
+      echo collections[homepage_handle].url
+    elsif collections[gender] != blank
+      echo collections[gender].url
+    else
+      echo routes.all_products_collection_url
+    endif
+  endif
+-%}

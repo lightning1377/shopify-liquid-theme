@@ -1,0 +1,19 @@
+{
+  "sections": {
+    "split_gate": {
+      "type": "landing-split-gate",
+      "settings": {
+        "overlay_opacity": 35,
+        "woman_title": "KADIN",
+        "woman_subtitle": "Yeni Sezon / 26—27",
+        "woman_btn_text": "Koleksiyonu Keşfet",
+        "woman_link": "",
+        "man_title": "ERKEK",
+        "man_subtitle": "Dokusu Güçlü, Etkisi Zamansız",
+        "man_btn_text": "Koleksiyonu Keşfet",
+        "man_link": ""
+      }
+    }
+  },
+  "order": ["split_gate"]
+}

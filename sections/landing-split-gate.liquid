@@ -1,0 +1,252 @@
+<section class='landing-split-gate' aria-label='{{ 'content.gateway.gateway_label' | t }}'>
+  <!-- Left Panel: KADIN (Woman) -->
+  <a
+    href='{% render 'audience-collection-url', gender: 'kadin', custom_url: section.settings.woman_link %}'
+    class='split-gate-panel split-gate-panel--woman'
+    data-gender-split
+    data-gender='kadin'
+    aria-label='{% render 'localized-default', value: section.settings.woman_title, default_text: 'KADIN', translation_key: 'content.gateway.women_title' %} {{ 'content.gateway.collection' | t }}'
+  >
+    <div class='split-gate-bg-wrap'>
+      {%- if section.settings.woman_image != blank -%}
+        {{
+          section.settings.woman_image
+          | image_url: width: 1600
+          | image_tag:
+            class: 'split-gate-bg',
+            loading: 'eager',
+            fetchpriority: 'high',
+            alt: 'content.gateway.women_title'
+          | t
+        }}
+      {%- else -%}
+        <img
+          class='split-gate-bg'
+          src='https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?auto=format&fit=crop&w=1600&q=80'
+          alt='{{ 'content.gateway.women_title' | t }}'
+          loading='eager'
+          fetchpriority='high'
+          width='1600'
+          height='1200'
+        >
+      {%- endif -%}
+      <div
+        class='split-gate-overlay'
+        style='--overlay-opacity: {{ section.settings.overlay_opacity | default: 35 | divided_by: 100.0 }};'
+      ></div>
+    </div>
+
+    <div class='split-gate-content'>
+      {%- if section.settings.woman_subtitle != blank -%}
+        <span class='split-gate-eyebrow'>
+          {%- render 'localized-default',
+            value: section.settings.woman_subtitle,
+            default_text: 'Yeni Sezon / 26—27',
+            translation_key: 'content.gateway.season'
+          -%}
+        </span>
+      {%- endif -%}
+      <h2 class='split-gate-title'>
+        {%- render 'localized-default',
+          value: section.settings.woman_title,
+          default_text: 'KADIN',
+          translation_key: 'content.gateway.women_title'
+        -%}
+      </h2>
+      <span class='split-gate-btn'>
+        <span>
+          {%- render 'localized-default',
+            value: section.settings.woman_btn_text,
+            default_text: 'Koleksiyonu Keşfet',
+            translation_key: 'content.gateway.explore'
+          -%}
+        </span>
+        <svg
+          class='split-gate-btn-icon'
+          width='18'
+          height='18'
+          viewBox='0 0 24 24'
+          fill='none'
+          stroke='currentColor'
+          stroke-width='2'
+          stroke-linecap='round'
+          stroke-linejoin='round'
+          aria-hidden='true'
+        >
+          <line x1="5" y1="12" x2="19" y2="12"></line>
+          <polyline points="12 5 19 12 12 19"></polyline>
+        </svg>
+      </span>
+    </div>
+  </a>
+
+  <!-- Right Panel: ERKEK (Man) -->
+  <a
+    href='{% render 'audience-collection-url', gender: 'erkek', custom_url: section.settings.man_link %}'
+    class='split-gate-panel split-gate-panel--man'
+    data-gender-split
+    data-gender='erkek'
+    aria-label='{% render 'localized-default', value: section.settings.man_title, default_text: 'ERKEK', translation_key: 'content.gateway.men_title' %} {{ 'content.gateway.collection' | t }}'
+  >
+    <div class='split-gate-bg-wrap'>
+      {%- if section.settings.man_image != blank -%}
+        {{
+          section.settings.man_image
+          | image_url: width: 1600
+          | image_tag:
+            class: 'split-gate-bg',
+            loading: 'eager',
+            fetchpriority: 'high',
+            alt: 'content.gateway.men_title'
+          | t
+        }}
+      {%- else -%}
+        <img
+          class='split-gate-bg'
+          src='https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?auto=format&fit=crop&w=1600&q=80'
+          alt='{{ 'content.gateway.men_title' | t }}'
+          loading='eager'
+          fetchpriority='high'
+          width='1600'
+          height='1200'
+        >
+      {%- endif -%}
+      <div
+        class='split-gate-overlay'
+        style='--overlay-opacity: {{ section.settings.overlay_opacity | default: 35 | divided_by: 100.0 }};'
+      ></div>
+    </div>
+
+    <div class='split-gate-content'>
+      {%- if section.settings.man_subtitle != blank -%}
+        <span class='split-gate-eyebrow'>
+          {%- render 'localized-default',
+            value: section.settings.man_subtitle,
+            default_text: 'Dokusu Güçlü, Etkisi Zamansız',
+            translation_key: 'content.gateway.men_subtitle'
+          -%}
+        </span>
+      {%- endif -%}
+      <h2 class='split-gate-title'>
+        {%- render 'localized-default',
+          value: section.settings.man_title,
+          default_text: 'ERKEK',
+          translation_key: 'content.gateway.men_title'
+        -%}
+      </h2>
+      <span class='split-gate-btn'>
+        <span>
+          {%- render 'localized-default',
+            value: section.settings.man_btn_text,
+            default_text: 'Koleksiyonu Keşfet',
+            translation_key: 'content.gateway.explore'
+          -%}
+        </span>
+        <svg
+          class='split-gate-btn-icon'
+          width='18'
+          height='18'
+          viewBox='0 0 24 24'
+          fill='none'
+          stroke='currentColor'
+          stroke-width='2'
+          stroke-linecap='round'
+          stroke-linejoin='round'
+          aria-hidden='true'
+        >
+          <line x1="5" y1="12" x2="19" y2="12"></line>
+          <polyline points="12 5 19 12 12 19"></polyline>
+        </svg>
+      </span>
+    </div>
+  </a>
+</section>
+
+{% schema %}
+  {
+    "name": "Landing Split Gate",
+    "tag": "section",
+    "class": "section-landing-split-gate",
+    "settings": [
+      {
+        "type": "range",
+        "id": "overlay_opacity",
+        "min": 10,
+        "max": 80,
+        "step": 5,
+        "unit": "%",
+        "label": "Görsel Karartma / Kontrast Oranı",
+        "default": 35
+      },
+      {
+        "type": "header",
+        "content": "Kadın Paneli"
+      },
+      {
+        "type": "image_picker",
+        "id": "woman_image",
+        "label": "Kadın Fotoğrafı"
+      },
+      {
+        "type": "text",
+        "id": "woman_title",
+        "label": "Başlık",
+        "default": "KADIN"
+      },
+      {
+        "type": "text",
+        "id": "woman_subtitle",
+        "label": "Alt Başlık",
+        "default": "Yeni Sezon / 26—27"
+      },
+      {
+        "type": "text",
+        "id": "woman_btn_text",
+        "label": "Buton Metni",
+        "default": "Koleksiyonu Keşfet"
+      },
+      {
+        "type": "url",
+        "id": "woman_link",
+        "label": "Hedef Sayfa Linki"
+      },
+      {
+        "type": "header",
+        "content": "Erkek Paneli"
+      },
+      {
+        "type": "image_picker",
+        "id": "man_image",
+        "label": "Erkek Fotoğrafı"
+      },
+      {
+        "type": "text",
+        "id": "man_title",
+        "label": "Başlık",
+        "default": "ERKEK"
+      },
+      {
+        "type": "text",
+        "id": "man_subtitle",
+        "label": "Alt Başlık",
+        "default": "Yeni Sezon / 26—27"
+      },
+      {
+        "type": "text",
+        "id": "man_btn_text",
+        "label": "Buton Metni",
+        "default": "Koleksiyonu Keşfet"
+      },
+      {
+        "type": "url",
+        "id": "man_link",
+        "label": "Hedef Sayfa Linki"
+      }
+    ],
+    "presets": [
+      {
+        "name": "Landing Split Gate"
+      }
+    ]
+  }
+{% endschema %}
